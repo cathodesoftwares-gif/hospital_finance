@@ -29,7 +29,7 @@ function SignInCardUI({
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<EmailAndPassword>();
 
   return (

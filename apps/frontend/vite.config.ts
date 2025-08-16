@@ -2,34 +2,47 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import eslint from 'vite-plugin-eslint';
+import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  root: __dirname,
+  base: process.env.NODE_ENV === 'production' ? '/hospital-finance/' : '/',
+  build: {
+    outDir: '../../dist/apps/frontend',
+    reportCompressedSize: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
   server: {
-    port: 4200,
+    port: 4201,
     host: 'localhost',
+    hmr: {
+      overlay: true,
+    },
+    open: true,
+  },
+  resolve: {
+    alias: {
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@GlobalState': path.resolve(__dirname, 'src/app/GlobalState.ts'),
+    },
   },
   plugins: [
-    react(),
-    tsconfigPaths({ projects: ['./tsconfig.app.json']}),
+    react({
+      jsxRuntime: 'automatic',
+    }),
     nxViteTsPaths(),
+    eslint({
+      failOnError: false,
+      failOnWarning: false,
+    }),
   ],
-
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [
-  //    viteTsConfigPaths({
-  //      root: '../../',
-  //    }),
-  //  ],
-  // },
-
-  test: {
-    globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(mode),
   },
-});
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
+}));

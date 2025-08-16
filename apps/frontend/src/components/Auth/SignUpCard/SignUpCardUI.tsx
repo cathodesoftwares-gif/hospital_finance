@@ -32,7 +32,7 @@ function SignUpCardUI({ onSubmit }: SignUpCardProps) {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<EmailAndPassword>();
 
   return (

@@ -1,27 +1,54 @@
-import { ChakraProvider, theme } from '@chakra-ui/react';
-import { Story, Meta } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
-import AuthHeaderUI, { AuthHeaderProps } from './AuthHeaderUI';
+import type { Meta, StoryObj } from '@storybook/react';
+import AuthHeaderUI from './AuthHeaderUI';
 
-export default {
+const meta: Meta<typeof AuthHeaderUI> = {
+  title: 'Components/Auth/AuthHeader',
   component: AuthHeaderUI,
-  title: 'AuthHeaderUI',
-} as Meta;
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component: 'Authentication header component that shows user profile when logged in or sign up/sign in buttons when not authenticated.',
+      },
+    },
+  },
+  argTypes: {
+    handleSignOut: {
+      action: 'sign-out',
+      description: 'Callback function called when user signs out',
+    },
+  },
+  tags: ['autodocs'],
+};
 
-const Template: Story<AuthHeaderProps> = (args) => (
-  <ChakraProvider theme={theme}>
-    <BrowserRouter>
-      <AuthHeaderUI {...args} />
-    </BrowserRouter>
-  </ChakraProvider>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  user: {
-    username: 'user@gmail.com',
-    role: 'admin',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9',
+export const NotAuthenticated: Story = {
+  args: {
+    user: undefined,
+    handleSignOut: () => console.log('Sign out clicked'),
+  },
+};
+
+export const AuthenticatedUser: Story = {
+  args: {
+    user: {
+      username: 'john.doe@hospital.com',
+      role: 'Hospital Admin',
+      avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    },
+    handleSignOut: () => console.log('Sign out clicked'),
+  },
+};
+
+export const AuthenticatedWithoutAvatar: Story = {
+  args: {
+    user: {
+      username: 'jane.smith@clinic.com',
+      role: 'Hospital Manager',
+      avatarUrl: '',
+    },
+    handleSignOut: () => console.log('Sign out clicked'),
   },
 };

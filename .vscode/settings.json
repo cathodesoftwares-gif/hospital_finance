@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["fastify", "nrwl", "pino", "trpc"]
+  "cSpell.words": [
+    "fastify",
+    "nrwl",
+    "pino",
+    "trpc"
+  ],
+  "nxConsole.generateAiAgentRules": true
 }
