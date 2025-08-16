@@ -83,14 +83,14 @@ const Partners = () => {
         position="relative"
         overflow="hidden"
       >
-        <Container maxW="container.xl" py={20}>
-          <VStack spacing={8} textAlign="center">
+        <Container maxW="container.xl" py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
+          <VStack spacing={{ base: 6, md: 8 }} textAlign="center">
             <Badge colorScheme="purple" px={4} py={2} borderRadius="full" fontSize="sm">
               Strategic Partnerships
             </Badge>
             <Heading
               as="h1"
-              size="4xl"
+              size={{ base: "2xl", md: "3xl", lg: "4xl" }}
               color="white"
               lineHeight="1.1"
               fontWeight="bold"
@@ -99,28 +99,29 @@ const Partners = () => {
               Partner with India's Leading
               <Text as="span" color="purple.400" display="block">Hospital Finance Platform</Text>
             </Heading>
-            <Text fontSize="xl" color="gray.300" maxW="600px" lineHeight="1.6">
+            <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="600px" lineHeight="1.6">
               Join our ecosystem of healthcare institutions, technology partners, and financial institutions 
               to transform hospital financing across India.
             </Text>
-            <HStack spacing={4} pt={6}>
+            <VStack spacing={4} pt={6} w={{ base: 'full', md: 'auto' }}>
               <Button 
-                size="lg" 
+                size={{ base: "md", md: "lg" }}
                 colorScheme="purple" 
                 leftIcon={<FaHandshake />}
                 bg="purple.400"
                 _hover={{ bg: 'purple.500', transform: 'translateY(-2px)' }}
                 transition="all 0.2s"
-                px={8}
-                py={6}
-                fontSize="lg"
+                px={{ base: 6, md: 8 }}
+                py={{ base: 4, md: 6 }}
+                fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                w={{ base: 'full', md: 'auto' }}
               >
                 Become a Partner
               </Button>
               <Button 
-                size="lg" 
+                size={{ base: "md", md: "lg" }}
                 variant="outline" 
                 leftIcon={<FaUsers />}
                 color="white"
@@ -131,41 +132,42 @@ const Partners = () => {
                   borderColor: 'white'
                 }}
                 transition="all 0.2s"
-                px={8}
-                py={6}
-                fontSize="lg"
+                px={{ base: 6, md: 8 }}
+                py={{ base: 4, md: 6 }}
+                fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                w={{ base: 'full', md: 'auto' }}
               >
                 View Partners
               </Button>
-            </HStack>
+            </VStack>
           </VStack>
         </Container>
       </Box>
 
       {/* Our Lenders and Lending Partners Section - Matching Home Page Style */}
-      <Box py={20} bg="gray.900">
-        <Container maxW="container.xl">
-          <VStack spacing={16}>
+      <Box py={{ base: 12, md: 20 }} bg="gray.900">
+        <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
+          <VStack spacing={{ base: 12, md: 16 }}>
             {/* Section Header - Matching Home Page Style */}
             <VStack spacing={6} textAlign="center">
-              <Heading size="2xl" color="white" fontWeight="bold">
+              <Heading size={{ base: "xl", md: "2xl" }} color="white" fontWeight="bold">
                 Our Lenders and Lending Partners
               </Heading>
-              <Text fontSize="xl" color="gray.300" maxW="800px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="800px" lineHeight="1.6">
                 We collaborate with leading financial institutions across India to provide comprehensive 
                 hospital financing solutions with transparent terms and competitive rates.
               </Text>
             </VStack>
 
             {/* Detailed Lender Information Cards - Matching Home Page Problem Statement Style */}
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} w="full">
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 6, md: 8 }} w="full">
               {lenderDetails.map((lender, index) => (
                 <Box
                   key={index}
                   bg="purple.50"
-                  p={8}
+                  p={{ base: 6, md: 8 }}
                   borderRadius="xl"
                   boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                   border="1px solid"
@@ -260,7 +262,7 @@ const Partners = () => {
           {/* Main Content - Spread Out */}
           <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" py={8}>
             {/* Top Section - Logo and Brand */}
-            <VStack align="start" spacing={6} mb={12}>
+            <VStack align={{ base: "center", md: "start" }} spacing={6} mb={12} textAlign={{ base: "center", md: "left" }}>
               <HStack spacing={4}>
                 <Box
                   w={16}
@@ -276,7 +278,7 @@ const Partners = () => {
                 >
                   HF
                 </Box>
-                <VStack align="start" spacing={1}>
+                <VStack align={{ base: "center", md: "start" }} spacing={1}>
                   <Text fontSize="2xl" fontWeight="bold" color="white">
                     HOSPITAL.FINANCE
                   </Text>
@@ -293,11 +295,11 @@ const Partners = () => {
             {/* Middle Section - Three Columns Spread Out */}
             <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={12} mb={12} flex={1}>
               {/* Left Section - Contact */}
-              <VStack align="start" spacing={6}>
+              <VStack align={{ base: "center", md: "start" }} spacing={6} textAlign={{ base: "center", md: "left" }}>
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Contact
                 </Text>
-                <VStack align="start" spacing={4}>
+                <VStack align={{ base: "center", md: "start" }} spacing={4}>
                   <Text color="gray.400" fontSize="md">
                     Get in touch with our team
                   </Text>
@@ -357,11 +359,11 @@ const Partners = () => {
               </VStack>
 
               {/* Right Section - Menu */}
-              <VStack align="end" spacing={6}>
+              <VStack align={{ base: "center", md: "end" }} spacing={6} textAlign={{ base: "center", md: "right" }}>
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Menu
                 </Text>
-                <VStack align="end" spacing={4}>
+                <VStack align={{ base: "center", md: "end" }} spacing={4}>
                   <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
                     Company
                   </Text>
@@ -379,7 +381,7 @@ const Partners = () => {
             </Grid>
 
             {/* Bottom Section - Additional Info */}
-            <VStack align="start" spacing={4} mb={8}>
+            <VStack align={{ base: "center", md: "start" }} spacing={4} mb={8} textAlign={{ base: "center", md: "left" }}>
               <Text color="gray.500" fontSize="md">
                 24-hour loan approval • 98% success rate • AI-powered risk assessment
               </Text>
@@ -387,7 +389,7 @@ const Partners = () => {
           </Box>
 
           {/* Copyright Section */}
-          <Box borderTop="1px solid" borderColor="gray.700" pt={6}>
+          <Box borderTop="1px solid" borderColor="gray.700" pt={6} textAlign={{ base: "center", md: "left" }}>
             <Text color="gray.400" fontSize="sm">
               © 2025 by Hospital.Finance. All Rights reserved.
             </Text>

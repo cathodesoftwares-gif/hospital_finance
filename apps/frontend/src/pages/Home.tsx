@@ -639,8 +639,8 @@ const Home = () => {
             {/* Left Panel - Abstract Visual */}
             <Box
               bg="gray.800"
-              p={8}
-              minH="80vh"
+              p={{ base: 6, md: 8 }}
+              minH={{ base: "70vh", md: "80vh" }}
               position="relative"
               overflow="hidden"
               transition="all 0.5s ease"
@@ -653,7 +653,7 @@ const Home = () => {
                 "& .panel-description": {
                   opacity: 1,
                   transform: "translateY(0)",
-                  maxHeight: "200px"
+                  maxHeight: "300px"
                 }
               }}
               cursor="pointer"
@@ -696,10 +696,13 @@ const Home = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
+                px={{ base: 2, md: 4 }}
               >
                 <Text 
                   color="gray.300" 
                   lineHeight="1.6"
+                  fontSize={{ base: "md", md: "lg" }}
+                  textAlign="center"
                 >
                   Advanced machine learning algorithms analyze your hospital's financial data 
                   to provide actionable insights and predictive analytics for better decision-making.
@@ -720,7 +723,7 @@ const Home = () => {
                 transition="all 0.5s ease"
                 mb={8}
               >
-                <Heading size="xl" color="white" fontWeight="light">
+                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
                   AI Powered Analytics
                 </Heading>
               </Box>
@@ -729,78 +732,9 @@ const Home = () => {
             {/* Center Panel - Highlight */}
             <Box
               bg="gray.800"
-              p={8}
-              minH="80vh"
+              p={{ base: 6, md: 8 }}
+              minH={{ base: "70vh", md: "80vh" }}
               textAlign="center"
-              transition="all 0.5s ease"
-              _hover={{
-                bg: "rgba(128, 90, 213, 0.9)",
-                "& .panel-content": {
-                  opacity: 1,
-                  transform: "translateY(0)"
-                },
-                "& .panel-description": {
-                  opacity: 1,
-                  transform: "translateY(0)",
-                  maxHeight: "200px"
-                }
-              }}
-              cursor="pointer"
-              display="flex"
-              flexDirection="column"
-              justifyContent="space-between"
-            >
-              {/* Spacer for top */}
-              <Box flex={1}></Box>
-              
-              {/* Paragraph in Middle */}
-              <Box 
-                className="panel-description"
-                opacity={0}
-                transform="translateY(20px)"
-                maxHeight="0"
-                overflow="hidden"
-                transition="all 0.6s ease"
-                flex={1}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Text 
-                  color="gray.300" 
-                  lineHeight="1.6" 
-                  fontSize="lg"
-                >
-                  Get approved for loans up to 1 CR rupees within 24 hours. 
-                  Our streamlined process ensures quick access to working capital 
-                  when your hospital needs it most.
-                </Text>
-              </Box>
-              
-              {/* Spacer for bottom */}
-              <Box flex={1}></Box>
-              
-              {/* Heading slightly above bottom */}
-              <Box 
-                className="panel-content"
-                opacity={0.9}
-                transform="translateY(0)"
-                transition="all 0.5s ease"
-                mb={8}
-              >
-                <Heading size="xl" color="white" fontWeight="light">
-                  Instant Loan Approval
-                </Heading>
-              </Box>
-            </Box>
-
-            {/* Right Panel - Interface Mockup */}
-            <Box
-              bg="gray.800"
-              p={8}
-              minH="80vh"
-              position="relative"
-              overflow="hidden"
               transition="all 0.5s ease"
               _hover={{
                 bg: "rgba(128, 90, 213, 0.9)",
@@ -834,11 +768,84 @@ const Home = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
+                px={{ base: 2, md: 4 }}
+              >
+                <Text 
+                  color="gray.300" 
+                  lineHeight="1.6" 
+                  fontSize={{ base: "md", md: "lg" }}
+                  textAlign="center"
+                >
+                  Get approved for loans up to 1 CR rupees within 24 hours. 
+                  Our streamlined process ensures quick access to working capital 
+                  when your hospital needs it most.
+                </Text>
+              </Box>
+              
+              {/* Spacer for bottom */}
+              <Box flex={1}></Box>
+              
+              {/* Heading slightly above bottom */}
+              <Box 
+                className="panel-content"
+                opacity={0.9}
+                transform="translateY(0)"
+                transition="all 0.5s ease"
+                mb={8}
+              >
+                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
+                  Instant Loan Approval
+                </Heading>
+              </Box>
+            </Box>
+
+            {/* Right Panel - Interface Mockup */}
+            <Box
+              bg="gray.800"
+              p={{ base: 6, md: 8 }}
+              minH={{ base: "70vh", md: "80vh" }}
+              position="relative"
+              overflow="hidden"
+              transition="all 0.5s ease"
+              _hover={{
+                bg: "rgba(128, 90, 213, 0.9)",
+                "& .panel-content": {
+                  opacity: 1,
+                  transform: "translateY(0)"
+                },
+                "& .panel-description": {
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  maxHeight: "400px"
+                }
+              }}
+              cursor="pointer"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+            >
+              {/* Spacer for top */}
+              <Box flex={1}></Box>
+              
+              {/* Paragraph in Middle */}
+              <Box 
+                className="panel-description"
+                opacity={0}
+                transform="translateY(20px)"
+                maxHeight="0"
+                overflow="hidden"
+                transition="all 0.6s ease"
+                flex={1}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                px={{ base: 2, md: 4 }}
               >
                 <Text 
                   color="gray.300" 
                   lineHeight="1.6"
-                  fontSize="lg"
+                  fontSize={{ base: "md", md: "lg" }}
+                  textAlign="center"
                 >
                   Seamlessly integrate with your existing hospital systems through our secure API endpoints. 
                   We ensure complete data privacy with end-to-end encryption, HIPAA compliance, and 
@@ -857,7 +864,7 @@ const Home = () => {
                 transition="all 0.5s ease"
                 mb={8}
               >
-                <Heading size="xl" color="white" fontWeight="light">
+                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
                   Secure Integration
                 </Heading>
               </Box>
@@ -1436,7 +1443,7 @@ const Home = () => {
           {/* Main Content - Spread Out */}
           <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" py={8}>
             {/* Top Section - Logo and Brand */}
-            <VStack align="start" spacing={6} mb={12}>
+            <VStack align={{ base: "center", md: "start" }} spacing={6} mb={12} textAlign={{ base: "center", md: "left" }}>
               <HStack spacing={4}>
                 <Box
                   w={16}
@@ -1452,7 +1459,7 @@ const Home = () => {
                 >
                   HF
                 </Box>
-                <VStack align="start" spacing={1}>
+                <VStack align={{ base: "center", md: "start" }} spacing={1}>
                   <Text fontSize="2xl" fontWeight="bold" color="white">
                     HOSPITAL.FINANCE
                   </Text>
@@ -1469,11 +1476,11 @@ const Home = () => {
             {/* Middle Section - Three Columns Spread Out */}
             <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={12} mb={12} flex={1} w="full">
               {/* Left Section - Contact */}
-              <VStack align="start" spacing={6} w="full">
+              <VStack align={{ base: "center", md: "start" }} spacing={6} w="full" textAlign={{ base: "center", md: "left" }}>
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Contact
                 </Text>
-                <VStack align="start" spacing={4} w="full">
+                <VStack align={{ base: "center", md: "start" }} spacing={4} w="full">
                   <Text color="gray.400" fontSize="md">
                     Get in touch with our team
                   </Text>
@@ -1533,11 +1540,11 @@ const Home = () => {
               </VStack>
 
               {/* Right Section - Menu */}
-              <VStack align="end" spacing={6} w="full">
+              <VStack align={{ base: "center", md: "end" }} spacing={6} w="full" textAlign={{ base: "center", md: "right" }}>
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Menu
                 </Text>
-                <VStack align="end" spacing={4} w="full">
+                <VStack align={{ base: "center", md: "end" }} spacing={4} w="full">
                   <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
                     Company
                   </Text>
@@ -1555,7 +1562,7 @@ const Home = () => {
             </Grid>
 
             {/* Bottom Section - Additional Info */}
-            <VStack align="start" spacing={4} mb={8}>
+            <VStack align={{ base: "center", md: "start" }} spacing={4} mb={8} textAlign={{ base: "center", md: "left" }}>
               <Text color="gray.500" fontSize="md">
                 24-hour loan approval • 98% success rate • AI-powered risk assessment
               </Text>
@@ -1563,7 +1570,7 @@ const Home = () => {
           </Box>
 
           {/* Copyright Section */}
-          <Box borderTop="1px solid" borderColor="gray.700" pt={6}>
+          <Box borderTop="1px solid" borderColor="gray.700" pt={6} textAlign={{ base: "center", md: "left" }}>
             <Text color="gray.400" fontSize="sm">
               © 2025 by Hospital.Finance. All Rights reserved.
             </Text>
