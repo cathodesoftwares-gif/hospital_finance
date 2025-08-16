@@ -21,9 +21,14 @@ import {
   FaMapMarkerAlt,
   FaUserTie
 } from 'react-icons/fa';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Partners = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const lenderDetails = [
     {
       name: 'Bajaj Finserv Limited',
@@ -110,6 +115,7 @@ const Partners = () => {
                 py={6}
                 fontSize="lg"
                 rounded="full"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Become a Partner
               </Button>
@@ -129,6 +135,7 @@ const Partners = () => {
                 py={6}
                 fontSize="lg"
                 rounded="full"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 View Partners
               </Button>
