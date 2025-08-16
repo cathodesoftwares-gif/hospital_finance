@@ -153,15 +153,15 @@ const Home = () => {
         position="relative"
         overflow="hidden"
       >
-        <Container maxW="container.xl" py={20}>
-          <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={12} alignItems="center">
-            <VStack align="start" spacing={8}>
+        <Container maxW="container.xl" py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
+          <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={{ base: 8, lg: 12 }} alignItems="center">
+            <VStack align="start" spacing={{ base: 6, md: 8 }} textAlign={{ base: 'center', lg: 'left' }}>
               <Badge colorScheme="purple" px={4} py={2} borderRadius="full" fontSize="sm">
                 Hospital Financing Platform
               </Badge>
               <Heading
                 as="h1"
-                size="3xl"
+                size={{ base: "2xl", md: "3xl" }}
                 color="white"
                 lineHeight="1.1"
                 fontWeight="bold"
@@ -170,27 +170,28 @@ const Home = () => {
                 Transform Your Hospital's
                 <Text as="span" color="purple.400" display="block"> Financial Future</Text>
               </Heading>
-              <Text fontSize="xl" color="gray.300" maxW="500px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="500px" lineHeight="1.6">
                 Get quick access to short-term financing with our AI-powered risk assessment platform. 
                 Upload documents, get instant decisions, and secure funding in 24 hours.
               </Text>
-              <HStack spacing={4} pt={6}>
+              <VStack spacing={4} pt={6} w={{ base: 'full', md: 'auto' }}>
                 <Button 
-                  size="lg" 
+                  size={{ base: "md", md: "lg" }}
                   colorScheme="purple" 
                   bg="purple.400"
                   _hover={{ bg: 'purple.500', transform: 'translateY(-2px)' }}
                   transition="all 0.2s"
-                  px={8}
-                  py={6}
-                  fontSize="lg"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 4, md: 6 }}
+                  fontSize={{ base: "md", md: "lg" }}
                   rounded="full"
                   onClick={scrollToContact}
+                  w={{ base: 'full', md: 'auto' }}
                 >
                   Contact Us
                 </Button>
                 <Button 
-                  size="lg" 
+                  size={{ base: "md", md: "lg" }}
                   variant="outline" 
                   color="white"
                   borderColor="gray.400"
@@ -200,20 +201,21 @@ const Home = () => {
                     borderColor: 'white'
                   }}
                   transition="all 0.2s"
-                  px={8}
-                  py={6}
-                  fontSize="lg"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 4, md: 6 }}
+                  fontSize={{ base: "md", md: "lg" }}
                   rounded="full"
+                  w={{ base: 'full', md: 'auto' }}
                 >
                   View Demo
                 </Button>
-              </HStack>
+              </VStack>
             </VStack>
-            <Box display="flex" justifyContent="center" alignItems="center">
+            <Box display={{ base: 'none', lg: 'flex' }} justifyContent="center" alignItems="center">
               <Box
                 bg="purple.900"
-                h="500px"
-                w="500px"
+                h={{ base: "300px", md: "400px", lg: "500px" }}
+                w={{ base: "300px", md: "400px", lg: "500px" }}
                 borderRadius="full"
                 display="flex"
                 alignItems="center"
@@ -237,24 +239,24 @@ const Home = () => {
       </Box>
 
       {/* Problem Statement Section */}
-      <Box py={20} bg="gray.900">
-        <Container maxW="container.xl">
-          <VStack spacing={16}>
+      <Box py={{ base: 12, md: 20 }} bg="gray.900">
+        <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
+          <VStack spacing={{ base: 12, md: 16 }}>
             <VStack spacing={6} textAlign="center">
-              <Heading size="2xl" color="white" fontWeight="bold">
+              <Heading size={{ base: "xl", md: "2xl" }} color="white" fontWeight="bold">
                 India's Healthcare Has a Cash Flow Problem
               </Heading>
-              <Text fontSize="xl" color="gray.300" maxW="800px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="800px" lineHeight="1.6">
                 From hospitals waiting months for insurance claims to distributors struggling with retailer credit, 
                 the entire healthcare ecosystem is trapped in a cycle of delayed payments.
               </Text>
             </VStack>
             
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 6, md: 8 }}>
               {/* Card 1: Delayed Payments */}
               <Box
                 bg="purple.50"
-                p={8}
+                p={{ base: 6, md: 8 }}
                 borderRadius="xl"
                 boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                 border="1px solid"
