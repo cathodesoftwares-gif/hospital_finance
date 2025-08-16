@@ -7,7 +7,7 @@ import path from 'path';
 
 export default defineConfig(({ mode }) => ({
   root: __dirname,
-  base: process.env.NODE_ENV === 'production' ? '/hospital-finance/' : '/',
+  base: '/',
   build: {
     outDir: '../../dist/apps/frontend',
     reportCompressedSize: true,
