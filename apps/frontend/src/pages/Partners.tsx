@@ -13,9 +13,7 @@ import {
   Grid,
 } from '@chakra-ui/react';
 import { 
-  FaHandshake, 
   FaShieldAlt,
-  FaUsers,
   FaExternalLinkAlt,
   FaEnvelope,
   FaMapMarkerAlt,
@@ -76,7 +74,7 @@ const Partners = () => {
     <Box>
       {/* Hero Section - Matching Home Page Style */}
       <Box 
-        bg="gray.900" 
+        bg="neutral.50" 
         minH="100vh" 
         display="flex" 
         alignItems="center"
@@ -85,31 +83,30 @@ const Partners = () => {
       >
         <Container maxW="container.xl" py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
           <VStack spacing={{ base: 6, md: 8 }} textAlign="center">
-            <Badge colorScheme="purple" px={4} py={2} borderRadius="full" fontSize="sm">
+            <Badge colorScheme="brand" px={4} py={2} borderRadius="full" fontSize="sm" bg="brand.100" color="brand.700">
               Strategic Partnerships
             </Badge>
             <Heading
               as="h1"
               size={{ base: "2xl", md: "3xl", lg: "4xl" }}
-              color="white"
+              color="neutral.800"
               lineHeight="1.1"
-              fontWeight="bold"
+              fontWeight="medium"
               maxW="800px"
             >
               Partner with India's Leading
-              <Text as="span" color="purple.400" display="block">Hospital Finance Platform</Text>
+              <Text as="span" color="brand.600" display="block">Healthcare Finance Platform</Text>
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="600px" lineHeight="1.6">
+            <Text fontSize={{ base: "lg", md: "xl" }} color="neutral.600" maxW="600px" lineHeight="1.6">
               Join our ecosystem of healthcare institutions, technology partners, and financial institutions 
               to transform hospital financing across India.
             </Text>
             <VStack spacing={4} pt={6} w={{ base: 'full', md: 'auto' }}>
               <Button 
                 size={{ base: "md", md: "lg" }}
-                colorScheme="purple" 
-                leftIcon={<FaHandshake />}
-                bg="purple.400"
-                _hover={{ bg: 'purple.500', transform: 'translateY(-2px)' }}
+                colorScheme="brand" 
+                bg="brand.500"
+                _hover={{ bg: 'brand.600', transform: 'translateY(-2px)' }}
                 transition="all 0.2s"
                 px={{ base: 6, md: 8 }}
                 py={{ base: 4, md: 6 }}
@@ -123,13 +120,12 @@ const Partners = () => {
               <Button 
                 size={{ base: "md", md: "lg" }}
                 variant="outline" 
-                leftIcon={<FaUsers />}
-                color="white"
-                borderColor="gray.400"
+                color="neutral.700"
+                borderColor="neutral.300"
                 _hover={{ 
-                  bg: 'white', 
-                  color: 'gray.900',
-                  borderColor: 'white'
+                  bg: 'neutral.100', 
+                  color: 'neutral.800',
+                  borderColor: 'neutral.400'
                 }}
                 transition="all 0.2s"
                 px={{ base: 6, md: 8 }}
@@ -147,15 +143,15 @@ const Partners = () => {
       </Box>
 
       {/* Our Lenders and Lending Partners Section - Matching Home Page Style */}
-      <Box py={{ base: 12, md: 20 }} bg="gray.900">
+      <Box py={{ base: 12, md: 20 }} bg="white">
         <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
           <VStack spacing={{ base: 12, md: 16 }}>
             {/* Section Header - Matching Home Page Style */}
             <VStack spacing={6} textAlign="center">
-              <Heading size={{ base: "xl", md: "2xl" }} color="white" fontWeight="bold">
+              <Heading size={{ base: "xl", md: "2xl" }} color="neutral.800" fontWeight="bold">
                 Our Lenders and Lending Partners
               </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="800px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="neutral.600" maxW="800px" lineHeight="1.6">
                 We collaborate with leading financial institutions across India to provide comprehensive 
                 hospital financing solutions with transparent terms and competitive rates.
               </Text>
@@ -166,12 +162,12 @@ const Partners = () => {
               {lenderDetails.map((lender, index) => (
                 <Box
                   key={index}
-                  bg="purple.50"
+                  bg="brand.50"
                   p={{ base: 6, md: 8 }}
                   borderRadius="xl"
                   boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                   border="1px solid"
-                  borderColor="purple.100"
+                  borderColor="brand.200"
                   _hover={{ transform: 'translateY(-4px)', transition: 'all 0.3s' }}
                 >
                   <VStack spacing={6} align="start">
@@ -190,10 +186,10 @@ const Partners = () => {
                         </Text>
                       </Box>
                       <VStack align="start" spacing={1}>
-                        <Text fontSize="lg" fontWeight="bold" color={`${lender.color}.600`}>
+                        <Text fontSize="lg" fontWeight="bold" color="brand.600">
                           {lender.logoText}
                         </Text>
-                        <Heading size="md" color="gray.800" fontWeight="bold">
+                        <Heading size="md" color="neutral.800" fontWeight="bold">
                           {lender.name}
                         </Heading>
                       </VStack>
@@ -202,49 +198,49 @@ const Partners = () => {
                     {/* Contact Information */}
                     <VStack spacing={4} align="start" w="full">
                       <HStack spacing={3}>
-                        <Icon as={FaExternalLinkAlt} color="blue.500" w={4} h={4} />
-                        <Link href={lender.website} color="blue.500" isExternal fontWeight="medium">
+                        <Icon as={FaExternalLinkAlt} color="brand.500" w={4} h={4} />
+                        <Link href={lender.website} color="brand.500" isExternal fontWeight="medium">
                           {lender.website}
                         </Link>
                       </HStack>
                       
                       <HStack spacing={3}>
-                        <Icon as={FaEnvelope} color="blue.500" w={4} h={4} />
-                        <Link href={`mailto:${lender.email}`} color="blue.500" fontWeight="medium">
+                        <Icon as={FaEnvelope} color="brand.500" w={4} h={4} />
+                        <Link href={`mailto:${lender.email}`} color="brand.500" fontWeight="medium">
                           {lender.email}
                         </Link>
                       </HStack>
                       
                       <HStack spacing={3} align="start">
-                        <Icon as={FaMapMarkerAlt} color="blue.500" w={4} h={4} mt={1} />
-                        <Text color="gray.600" fontSize="sm" lineHeight="1.5">
+                        <Icon as={FaMapMarkerAlt} color="brand.500" w={4} h={4} mt={1} />
+                        <Text color="neutral.600" fontSize="sm" lineHeight="1.5">
                           {lender.address}
                         </Text>
                       </HStack>
                       
                       {lender.grievanceOfficer && (
                         <HStack spacing={3}>
-                          <Icon as={FaUserTie} color="blue.500" w={4} h={4} />
-                          <Text color="gray.600" fontSize="sm">
+                          <Icon as={FaUserTie} color="brand.500" w={4} h={4} />
+                          <Text color="neutral.600" fontSize="sm">
                             <strong>Grievance Redressal Officer:</strong> {lender.grievanceOfficer}
                           </Text>
                         </HStack>
                       )}
                       
                       <HStack spacing={3}>
-                        <Icon as={FaShieldAlt} color="blue.500" w={4} h={4} />
-                        <Link color="blue.500" fontSize="sm" fontWeight="medium">
+                        <Icon as={FaShieldAlt} color="brand.500" w={4} h={4} />
+                        <Link color="brand.500" fontSize="sm" fontWeight="medium">
                           {lender.grievancePolicy}
                         </Link>
                       </HStack>
                     </VStack>
 
                     {/* Stats Section - Matching Home Page Style */}
-                    <Box pt={4} borderTop="1px solid" borderColor="purple.200" w="full">
-                      <Text fontSize="sm" color="gray.500" mb={2}>
+                    <Box pt={4} borderTop="1px solid" borderColor="brand.300" w="full">
+                      <Text fontSize="sm" color="neutral.500" mb={2}>
                         Partnership Status
                       </Text>
-                      <Text fontSize="xl" color="green.500" fontWeight="bold">
+                      <Text fontSize="xl" color="finance.500" fontWeight="bold">
                         Active Partner
                       </Text>
                     </Box>
@@ -257,7 +253,7 @@ const Partners = () => {
       </Box>
 
       {/* Footer Section - Same as Home Page */}
-      <Box bg="gray.900" borderTop="1px solid" borderColor="gray.700" minH="70vh" display="flex" flexDirection="column">
+      <Box bg="neutral.900" borderTop="1px solid" borderColor="neutral.700" minH="70vh" display="flex" flexDirection="column">
         <Container maxW="container.xl" py={12} flex={1} display="flex" flexDirection="column" justifyContent="space-between">
           {/* Main Content - Spread Out */}
           <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" py={8}>
@@ -267,7 +263,7 @@ const Partners = () => {
                 <Box
                   w={16}
                   h={16}
-                  bg="purple.400"
+                  bg="brand.500"
                   borderRadius="xl"
                   display="flex"
                   alignItems="center"
@@ -282,12 +278,12 @@ const Partners = () => {
                   <Text fontSize="2xl" fontWeight="bold" color="white">
                     HOSPITAL.FINANCE
                   </Text>
-                  <Text color="purple.400" fontSize="sm" fontWeight="medium">
-                    AI-Powered Hospital Financing Platform
+                  <Text color="brand.400" fontSize="sm" fontWeight="medium">
+                    AI-Powered Healthcare Financing Platform
                   </Text>
                 </VStack>
               </HStack>
-              <Text color="gray.400" fontSize="lg" lineHeight="1.7" maxW="400px">
+              <Text color="neutral.400" fontSize="lg" lineHeight="1.7" maxW="400px">
                 Reach out to us to explore how Hospital.Finance can transform your hospital's financial future with AI-driven solutions.
               </Text>
             </VStack>
@@ -300,44 +296,44 @@ const Partners = () => {
                   Contact
                 </Text>
                 <VStack align={{ base: "center", md: "start" }} spacing={4}>
-                  <Text color="gray.400" fontSize="md">
+                  <Text color="neutral.400" fontSize="md">
                     Get in touch with our team
                   </Text>
                   <HStack spacing={4}>
                     <Box
                       w={12}
                       h={12}
-                      bg="white"
+                      bg="brand.500"
                       borderRadius="full"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                       cursor="pointer"
-                      _hover={{ bg: 'gray.200', transform: 'scale(1.1)' }}
+                      _hover={{ bg: 'brand.600', transform: 'scale(1.1)' }}
                       transition="all 0.2s"
                     >
-                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                      <Text fontSize="sm" fontWeight="bold" color="white">
                         in
                       </Text>
                     </Box>
                     <Box
                       w={12}
                       h={12}
-                      bg="white"
+                      bg="healthcare.500"
                       borderRadius="full"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                       cursor="pointer"
-                      _hover={{ bg: 'gray.200', transform: 'scale(1.1)' }}
+                      _hover={{ bg: 'healthcare.600', transform: 'scale(1.1)' }}
                       transition="all 0.2s"
                     >
-                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                      <Text fontSize="sm" fontWeight="bold" color="white">
                         <span role="img" aria-label="Camera">📷</span>
                       </Text>
                     </Box>
                   </HStack>
-                  <Text color="gray.400" fontSize="md" fontWeight="medium">
+                  <Text color="neutral.400" fontSize="md" fontWeight="medium">
                     https://www.hospital.finance
                   </Text>
                 </VStack>
@@ -349,10 +345,10 @@ const Partners = () => {
                   Services
                 </Text>
                 <VStack align="center" spacing={4}>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Instant Loan Approval
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
                     AI Analytics Platform
                   </Text>
                 </VStack>
@@ -364,16 +360,16 @@ const Partners = () => {
                   Menu
                 </Text>
                 <VStack align={{ base: "center", md: "end" }} spacing={4}>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Company
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Support
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Privacy Policy
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Terms of Service
                   </Text>
                 </VStack>
@@ -382,22 +378,22 @@ const Partners = () => {
 
             {/* Bottom Section - Additional Info */}
             <VStack align={{ base: "center", md: "start" }} spacing={4} mb={8} textAlign={{ base: "center", md: "left" }}>
-              <Text color="gray.500" fontSize="md">
-                24-hour loan approval • 98% success rate • AI-powered risk assessment
+              <Text color="neutral.500" fontSize="md">
+                24-hour loan approval • 0% success rate • AI-powered risk assessment
               </Text>
             </VStack>
           </Box>
 
           {/* Copyright Section */}
-          <Box borderTop="1px solid" borderColor="gray.700" pt={6} textAlign={{ base: "center", md: "left" }}>
-            <Text color="gray.400" fontSize="sm">
+          <Box borderTop="1px solid" borderColor="neutral.700" pt={6} textAlign={{ base: "center", md: "left" }}>
+            <Text color="neutral.400" fontSize="sm">
               © 2025 by Hospital.Finance. All Rights reserved.
             </Text>
           </Box>
         </Container>
         
-        {/* Blue Bar at Bottom */}
-        <Box bg="blue.600" h="4px" w="full" />
+        {/* Brand Bar at Bottom */}
+        <Box bg="brand.500" h="4px" w="full" />
       </Box>
     </Box>
   );

@@ -4,7 +4,6 @@ import {
   Button,
   HStack,
   Text,
-  useColorModeValue,
   Container,
   Flex,
   IconButton,
@@ -27,9 +26,9 @@ interface NavigationBarProps {
 const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
   const location = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const bgColor = 'white';
-  const textColor = useColorModeValue('gray.800', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.200');
+  const bgColor = 'rgba(255, 255, 255, 0.85)'; // Translucent white background
+  const textColor = 'neutral.800'; // Dark text for readability
+  const borderColor = 'rgba(255, 255, 255, 0.3)'; // Translucent border
 
   const navItems = [
     { name: 'Partners', path: '/partners' },
@@ -45,7 +44,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
 
   const Logo = () => (
     <HStack spacing={2}>
-      <FaHospital size={32} color="#805AD5" />
+      <FaHospital size={32} color="#3b82f6" /> {/* brand.500 - Trust blue */}
       <Text
         fontSize="xl"
         fontWeight="bold"
@@ -66,11 +65,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
           style={{ textDecoration: 'none' }}
         >
           <Text
-            color={location.pathname === item.path ? 'purple.500' : textColor}
+            color={location.pathname === item.path ? 'brand.400' : textColor}
             fontWeight="medium"
             fontSize="sm"
             cursor="pointer"
-            _hover={{ color: 'purple.500' }}
+            _hover={{ color: 'brand.400' }}
             transition="color 0.2s"
             whiteSpace="nowrap"
           >
@@ -91,11 +90,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
           onClick={onClose}
         >
           <Text
-            color={location.pathname === item.path ? 'purple.500' : textColor}
+            color={location.pathname === item.path ? 'brand.400' : textColor}
             fontWeight="medium"
             fontSize="md"
             cursor="pointer"
-            _hover={{ color: 'purple.500' }}
+            _hover={{ color: 'brand.400' }}
             transition="color 0.2s"
             py={2}
           >
@@ -115,10 +114,22 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
       mx={4}
       mt={4}
       borderRadius="xl"
-      boxShadow="0 4px 20px rgba(0, 0, 0, 0.1)"
-      backdropFilter="blur(10px)"
+      boxShadow="0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8)"
+      backdropFilter="blur(20px)"
       border="1px solid"
       borderColor={borderColor}
+      _before={{
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: 'xl',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+        pointerEvents: 'none',
+        zIndex: -1
+      }}
     >
       <Container maxW="container.xl">
         <Flex
@@ -142,12 +153,14 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
           <Box flex="1" display="flex" justifyContent="flex-end" alignItems="center">
             <HStack spacing={4} display={{ base: 'none', md: 'flex' }}>
               <Button
-                colorScheme="purple"
+                colorScheme="brand"
                 size="md"
                 rounded="full"
                 px={6}
                 fontWeight="medium"
+                bg="brand.500"
                 _hover={{
+                  bg: 'brand.600',
                   transform: 'translateY(-1px)',
                   boxShadow: 'lg',
                 }}
@@ -166,6 +179,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
               variant="ghost"
               aria-label="Open navigation menu"
               size="md"
+              color={textColor}
+              _hover={{ bg: 'rgba(0, 0, 0, 0.05)' }}
+              _active={{ bg: 'rgba(0, 0, 0, 0.1)' }}
             />
           </Box>
         </Flex>
@@ -174,22 +190,24 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ scrollToContact }) => {
       {/* Mobile Navigation Drawer */}
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="xs">
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">
+        <DrawerContent bg="rgba(255, 255, 255, 0.95)" backdropFilter="blur(20px)">
+          <DrawerCloseButton color={textColor} />
+          <DrawerHeader borderBottomWidth="1px" borderColor="rgba(0, 0, 0, 0.1)">
             <Logo />
           </DrawerHeader>
           <DrawerBody>
             <VStack spacing={6} align="stretch" pt={4}>
               <MobileNav />
-              <Box pt={4} borderTopWidth="1px" borderColor={borderColor}>
+              <Box pt={4} borderTopWidth="1px" borderColor="rgba(0, 0, 0, 0.1)">
                 <Button
-                  colorScheme="purple"
+                  colorScheme="brand"
                   size="md"
                   rounded="full"
                   w="full"
                   fontWeight="medium"
                   mb={4}
+                  bg="brand.500"
+                  _hover={{ bg: 'brand.600' }}
                   onClick={scrollToContact}
                 >
                   Contact Us

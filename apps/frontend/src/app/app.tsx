@@ -3,6 +3,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import Home from '../pages/Home';
 import Partners from '../pages/Partners';
+import Finance from '../pages/Finance';
+import Analytics from '../pages/Analytics';
+import About from '../pages/About';
 import NavigationBar from '../components/Navigation/NavigationBar';
 
 export function App() {
@@ -30,6 +33,9 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/finance" element={<Finance />} />
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="*" element={<Box p={8}>Not Found</Box>} />
         </Routes>
       </Box>

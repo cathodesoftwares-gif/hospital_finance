@@ -29,10 +29,21 @@ import {
   FaUserShield,
   FaFingerprint
 } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [panel1Visible, setPanel1Visible] = useState(false);
+  const [panel2Visible, setPanel2Visible] = useState(false);
+  const [panel3Visible, setPanel3Visible] = useState(false);
+  
+  const trustSectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const panel1Ref = useRef<HTMLDivElement>(null);
+  const panel2Ref = useRef<HTMLDivElement>(null);
+  const panel3Ref = useRef<HTMLDivElement>(null);
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -53,6 +64,27 @@ const Home = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
+      
+      // Check if trust section is in view
+      if (trustSectionRef.current) {
+        const rect = trustSectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Start animation when section comes into view
+        if (rect.top < windowHeight * 0.8) {
+          // Animate all panels with delays (scroll down)
+          setTimeout(() => setHeaderVisible(true), 0);
+          setTimeout(() => setPanel1Visible(true), 300);
+          setTimeout(() => setPanel2Visible(true), 600);
+          setTimeout(() => setPanel3Visible(true), 900);
+        } else {
+          // Reverse animation when scrolling back up
+          setHeaderVisible(false);
+          setPanel1Visible(false);
+          setPanel2Visible(false);
+          setPanel3Visible(false);
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -146,7 +178,7 @@ const Home = () => {
     <Box>
       {/* Hero Section - Full Viewport Height */}
       <Box 
-        bg="gray.900" 
+        bg="neutral.50" 
         minH="100vh" 
         display="flex" 
         alignItems="center"
@@ -156,30 +188,30 @@ const Home = () => {
         <Container maxW="container.xl" py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
           <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={{ base: 8, lg: 12 }} alignItems="center">
             <VStack align="start" spacing={{ base: 6, md: 8 }} textAlign={{ base: 'center', lg: 'left' }}>
-              <Badge colorScheme="purple" px={4} py={2} borderRadius="full" fontSize="sm">
-                Hospital Financing Platform
+              <Badge colorScheme="brand" px={4} py={2} borderRadius="full" fontSize="sm" bg="brand.100" color="brand.700">
+                AI-Powered Healthcare Financing
               </Badge>
               <Heading
                 as="h1"
                 size={{ base: "2xl", md: "3xl" }}
-                color="white"
+                color="neutral.800"
                 lineHeight="1.1"
-                fontWeight="bold"
+                fontWeight="medium"
                 maxW="600px"
               >
                 Transform Your Hospital's
-                <Text as="span" color="purple.400" display="block"> Financial Future</Text>
+                <Text as="span" color="brand.600" display="block"> Financial Future</Text>
               </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="500px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="neutral.600" maxW="500px" lineHeight="1.6">
                 Get quick access to short-term financing with our AI-powered risk assessment platform. 
                 Upload documents, get instant decisions, and secure funding in 24 hours.
               </Text>
               <VStack spacing={4} pt={6} w={{ base: 'full', md: 'auto' }}>
                 <Button 
                   size={{ base: "md", md: "lg" }}
-                  colorScheme="purple" 
-                  bg="purple.400"
-                  _hover={{ bg: 'purple.500', transform: 'translateY(-2px)' }}
+                  colorScheme="brand" 
+                  bg="brand.500"
+                  _hover={{ bg: 'brand.600', transform: 'translateY(-2px)' }}
                   transition="all 0.2s"
                   px={{ base: 6, md: 8 }}
                   py={{ base: 4, md: 6 }}
@@ -188,17 +220,17 @@ const Home = () => {
                   onClick={scrollToContact}
                   w={{ base: 'full', md: 'auto' }}
                 >
-                  Contact Us
+                  Get Started
                 </Button>
                 <Button 
                   size={{ base: "md", md: "lg" }}
                   variant="outline" 
-                  color="white"
-                  borderColor="gray.400"
+                  color="neutral.700"
+                  borderColor="neutral.300"
                   _hover={{ 
-                    bg: 'white', 
-                    color: 'gray.900',
-                    borderColor: 'white'
+                    bg: 'neutral.100', 
+                    color: 'neutral.800',
+                    borderColor: 'neutral.400'
                   }}
                   transition="all 0.2s"
                   px={{ base: 6, md: 8 }}
@@ -213,7 +245,7 @@ const Home = () => {
             </VStack>
             <Box display={{ base: 'none', lg: 'flex' }} justifyContent="center" alignItems="center">
               <Box
-                bg="purple.900"
+                bg="brand.500"
                 h={{ base: "300px", md: "400px", lg: "500px" }}
                 w={{ base: "300px", md: "400px", lg: "500px" }}
                 borderRadius="full"
@@ -221,14 +253,14 @@ const Home = () => {
                 alignItems="center"
                 justifyContent="center"
                 position="relative"
-                boxShadow="0 0 100px rgba(147, 51, 234, 0.3)"
+                boxShadow="0 0 100px rgba(59, 130, 246, 0.3)"
               >
                 <VStack spacing={6}>
-                  <Icon as={FaHospital} w={24} h={24} color="purple.300" />
+                  <Icon as={FaHospital} w={24} h={24} color="white" />
                   <Text fontSize="2xl" color="white" fontWeight="bold" textAlign="center">
                     Hospital Financing
                   </Text>
-                  <Text fontSize="lg" color="purple.200" textAlign="center" maxW="300px">
+                  <Text fontSize="lg" color="brand.100" textAlign="center" maxW="300px">
                     AI-Powered Risk Assessment & Quick Funding
                   </Text>
                 </VStack>
@@ -239,14 +271,14 @@ const Home = () => {
       </Box>
 
       {/* Problem Statement Section */}
-      <Box py={{ base: 12, md: 20 }} bg="gray.900">
+      <Box py={{ base: 12, md: 20 }} bg="white">
         <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
           <VStack spacing={{ base: 12, md: 16 }}>
             <VStack spacing={6} textAlign="center">
-              <Heading size={{ base: "xl", md: "2xl" }} color="white" fontWeight="bold">
+              <Heading size={{ base: "xl", md: "2xl" }} color="neutral.800" fontWeight="bold">
                 India's Healthcare Has a Cash Flow Problem
               </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color="gray.300" maxW="800px" lineHeight="1.6">
+              <Text fontSize={{ base: "lg", md: "xl" }} color="neutral.600" maxW="800px" lineHeight="1.6">
                 From hospitals waiting months for insurance claims to distributors struggling with retailer credit, 
                 the entire healthcare ecosystem is trapped in a cycle of delayed payments.
               </Text>
@@ -255,12 +287,12 @@ const Home = () => {
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 6, md: 8 }}>
               {/* Card 1: Delayed Payments */}
               <Box
-                bg="purple.50"
+                bg="alert.50"
                 p={{ base: 6, md: 8 }}
                 borderRadius="xl"
                 boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                 border="1px solid"
-                borderColor="purple.100"
+                borderColor="alert.200"
                 _hover={{ transform: 'translateY(-4px)', transition: 'all 0.3s' }}
               >
                 <VStack spacing={6} align="start">
@@ -295,12 +327,12 @@ const Home = () => {
 
               {/* Card 2: Working Capital Crunch */}
               <Box
-                bg="purple.50"
+                bg="accent.50"
                 p={8}
                 borderRadius="xl"
                 boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                 border="1px solid"
-                borderColor="purple.100"
+                borderColor="accent.200"
                 _hover={{ transform: 'translateY(-4px)', transition: 'all 0.3s' }}
               >
                 <VStack spacing={6} align="start">
@@ -335,12 +367,12 @@ const Home = () => {
 
               {/* Card 3: Limited Financing Options */}
               <Box
-                bg="purple.50"
+                bg="healthcare.50"
                 p={8}
                 borderRadius="xl"
                 boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
                 border="1px solid"
-                borderColor="purple.100"
+                borderColor="healthcare.200"
                 _hover={{ transform: 'translateY(-4px)', transition: 'all 0.3s' }}
               >
                 <VStack spacing={6} align="start">
@@ -378,7 +410,7 @@ const Home = () => {
       </Box>
 
       {/* Integration Section */}
-      <Box py={20} bg="gray.900">
+      <Box py={20} bg="neutral.50">
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
             {/* Main Heading */}
@@ -387,13 +419,13 @@ const Home = () => {
                 <Heading
                   as="h2"
                   size="4xl"
-                  color="white"
+                  color="neutral.800"
                   lineHeight="1.1"
                   fontWeight="normal"
                   maxW="600px"
                 >
                   Transform your
-                  <Text as="span" display="block">Hospital's Finances with <Text as="span" color="purple.400">US</Text></Text>
+                  <Text as="span" display="block">Hospital's Finances with <Text as="span" color="brand.600">US</Text></Text>
                 </Heading>
               </VStack>
             </Box>
@@ -417,7 +449,7 @@ const Home = () => {
       </Box>
 
       {/* Instant Loans Section */}
-      <Box py={20} bg="gray.900">
+      <Box py={20} bg="white">
         <Container maxW="container.xl">
           <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={12} alignItems="center">
             {/* Left Side - Text Content */}
@@ -425,7 +457,7 @@ const Home = () => {
               <Heading
                 as="h2"
                 size="2xl"
-                color="white"
+                color="neutral.800"
                 lineHeight="1.1"
                 fontWeight="light"
                 maxW="500px"
@@ -435,7 +467,7 @@ const Home = () => {
               </Heading>
               <Text 
                 fontSize="lg" 
-                color="gray.300" 
+                color="neutral.600" 
                 lineHeight="1.6"
                 maxW="500px"
               >
@@ -448,12 +480,12 @@ const Home = () => {
             {/* Right Side - Interactive Interface */}
             <Box display="flex" justifyContent="center" alignItems="center">
               <Box
-                bg="purple.50"
+                bg="brand.50"
                 p={8}
                 borderRadius="2xl"
-                boxShadow="0 20px 40px rgba(147, 51, 234, 0.15)"
+                boxShadow="0 20px 40px rgba(59, 130, 246, 0.15)"
                 border="1px solid"
-                borderColor="purple.100"
+                borderColor="brand.200"
                 position="relative"
                 minH="400px"
                 w="full"
@@ -463,19 +495,19 @@ const Home = () => {
                 <VStack spacing={6} align="stretch">
                   {/* Header */}
                   <HStack justify="space-between" align="center">
-                    <Text fontSize="lg" fontWeight="bold" color="purple.700">
-                      Loan Application
-                    </Text>
+                                      <Text fontSize="lg" fontWeight="bold" color="brand.700">
+                    Loan Application
+                  </Text>
                     <Badge colorScheme="green" borderRadius="full" px={3}>
                       AI Active
                     </Badge>
                   </HStack>
 
                   {/* Application Status */}
-                  <Box bg="white" p={4} borderRadius="xl" border="1px solid" borderColor="purple.200">
+                  <Box bg="white" p={4} borderRadius="xl" border="1px solid" borderColor="brand.200">
                     <VStack spacing={3} align="start">
                       <HStack spacing={2}>
-                        <Icon as={FaHospital} w={4} h={4} color="purple.500" />
+                        <Icon as={FaHospital} w={4} h={4} color="brand.500" />
                         <Text fontSize="sm" fontWeight="medium" color="gray.700">
                           Hospital Profile Verified
                         </Text>
@@ -496,15 +528,15 @@ const Home = () => {
                   </Box>
 
                   {/* Loan Amount */}
-                  <Box bg="purple.100" p={4} borderRadius="xl">
+                  <Box bg="finance.100" p={4} borderRadius="xl">
                     <VStack spacing={2}>
-                      <Text fontSize="sm" color="purple.700" fontWeight="medium">
+                      <Text fontSize="sm" color="finance.700" fontWeight="medium">
                         Approved Amount
                       </Text>
-                      <Text fontSize="2xl" fontWeight="bold" color="purple.800">
+                      <Text fontSize="2xl" fontWeight="bold" color="finance.800">
                         ₹1,00,00,000
                       </Text>
-                      <Text fontSize="xs" color="purple.600">
+                      <Text fontSize="xs" color="finance.600">
                         Available within 24 hours
                       </Text>
                     </VStack>
@@ -538,7 +570,7 @@ const Home = () => {
       </Box>
 
       {/* Analytics Platform Section */}
-      <Box bg="gray.900" py={20}>
+      <Box bg="healthcare.50" py={20}>
         <Container maxW="7xl">
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12} alignItems="center">
             {/* Analytics Dashboard */}
@@ -559,9 +591,9 @@ const Home = () => {
                 
                 {/* Metrics Grid */}
                 <SimpleGrid columns={2} spacing={4} mb={6}>
-                  <Box bg="purple.50" p={4} borderRadius="lg">
-                    <Text fontSize="sm" color="gray.600">Revenue</Text>
-                    <Text fontSize="xl" fontWeight="bold" color="purple.600">₹2.4M</Text>
+                  <Box bg="finance.50" p={4} borderRadius="lg">
+                    <Text fontSize="sm" color="neutral.600">Revenue</Text>
+                    <Text fontSize="xl" fontWeight="bold" color="finance.600">₹2.4M</Text>
                   </Box>
                   <Box bg="blue.50" p={4} borderRadius="lg">
                     <Text fontSize="sm" color="gray.600">Patients</Text>
@@ -578,12 +610,12 @@ const Home = () => {
                 </SimpleGrid>
                 
                 {/* AI Recommendations */}
-                <Box bg="gray.50" p={4} borderRadius="lg">
+                <Box bg="neutral.100" p={4} borderRadius="lg">
                   <Flex align="center" mb={2}>
-                    <Box w={2} h={2} bg="purple.500" borderRadius="full" mr={2}></Box>
-                    <Text fontSize="sm" fontWeight="medium" color="gray.800">AI Recommendations</Text>
+                    <Box w={2} h={2} bg="healthcare.500" borderRadius="full" mr={2}></Box>
+                    <Text fontSize="sm" fontWeight="medium" color="neutral.800">AI Recommendations</Text>
                   </Flex>
-                  <Text fontSize="sm" color="gray.600">
+                  <Text fontSize="sm" color="neutral.600">
                     Optimize bed utilization by 15% through predictive scheduling
                   </Text>
                 </Box>
@@ -595,7 +627,7 @@ const Home = () => {
               <Heading
                 as="h2"
                 size="2xl"
-                color="white"
+                color="neutral.800"
                 lineHeight="1.1"
                 fontWeight="light"
                 maxW="500px"
@@ -605,7 +637,7 @@ const Home = () => {
               </Heading>
               <Text 
                 fontSize="lg" 
-                color="gray.300" 
+                color="neutral.600" 
                 lineHeight="1.6"
                 maxW="500px"
               >
@@ -619,14 +651,14 @@ const Home = () => {
       </Box>
 
       {/* Why Choose Us Section */}
-      <Box bg="gray.900" minH="100vh" display="flex" alignItems="center">
+      <Box bg="white" minH="100vh" display="flex" alignItems="center">
         <Container maxW="full" px={0}>
           {/* Section Header */}
           <Box textAlign="center" mb={16} px={8}>
             <Heading
               as="h2"
               size="3xl"
-              color="white"
+              color="neutral.800"
               fontWeight="light"
               mb={4}
             >
@@ -638,14 +670,14 @@ const Home = () => {
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={0}>
             {/* Left Panel - Abstract Visual */}
             <Box
-              bg="gray.800"
+              bg="neutral.100"
               p={{ base: 6, md: 8 }}
               minH={{ base: "70vh", md: "80vh" }}
               position="relative"
               overflow="hidden"
               transition="all 0.5s ease"
               _hover={{
-                bg: "rgba(128, 90, 213, 0.9)",
+                bg: "brand.500",
                 "& .panel-content": {
                   opacity: 1,
                   transform: "translateY(0)"
@@ -671,7 +703,7 @@ const Home = () => {
                     left={`${Math.random() * 100}%`}
                     w={`${Math.random() * 200 + 50}px`}
                     h="1px"
-                    bg="gray.400"
+                    bg="neutral.300"
                     transform={`rotate(${Math.random() * 360}deg)`}
                     opacity={Math.random() * 0.5 + 0.3}
                   />
@@ -699,7 +731,7 @@ const Home = () => {
                 px={{ base: 2, md: 4 }}
               >
                 <Text 
-                  color="gray.300" 
+                  color="neutral.700" 
                   lineHeight="1.6"
                   fontSize={{ base: "md", md: "lg" }}
                   textAlign="center"
@@ -723,7 +755,7 @@ const Home = () => {
                 transition="all 0.5s ease"
                 mb={8}
               >
-                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
+                <Heading size={{ base: "lg", md: "xl" }} color="neutral.800" fontWeight="light">
                   AI Powered Analytics
                 </Heading>
               </Box>
@@ -731,13 +763,13 @@ const Home = () => {
 
             {/* Center Panel - Highlight */}
             <Box
-              bg="gray.800"
+              bg="neutral.100"
               p={{ base: 6, md: 8 }}
               minH={{ base: "70vh", md: "80vh" }}
               textAlign="center"
               transition="all 0.5s ease"
               _hover={{
-                bg: "rgba(128, 90, 213, 0.9)",
+                bg: "brand.500",
                 "& .panel-content": {
                   opacity: 1,
                   transform: "translateY(0)"
@@ -771,7 +803,7 @@ const Home = () => {
                 px={{ base: 2, md: 4 }}
               >
                 <Text 
-                  color="gray.300" 
+                  color="neutral.700" 
                   lineHeight="1.6" 
                   fontSize={{ base: "md", md: "lg" }}
                   textAlign="center"
@@ -793,7 +825,7 @@ const Home = () => {
                 transition="all 0.5s ease"
                 mb={8}
               >
-                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
+                <Heading size={{ base: "lg", md: "xl" }} color="neutral.800" fontWeight="light">
                   Instant Loan Approval
                 </Heading>
               </Box>
@@ -801,14 +833,14 @@ const Home = () => {
 
             {/* Right Panel - Interface Mockup */}
             <Box
-              bg="gray.800"
+              bg="neutral.100"
               p={{ base: 6, md: 8 }}
               minH={{ base: "70vh", md: "80vh" }}
               position="relative"
               overflow="hidden"
               transition="all 0.5s ease"
               _hover={{
-                bg: "rgba(128, 90, 213, 0.9)",
+                bg: "brand.500",
                 "& .panel-content": {
                   opacity: 1,
                   transform: "translateY(0)"
@@ -842,7 +874,7 @@ const Home = () => {
                 px={{ base: 2, md: 4 }}
               >
                 <Text 
-                  color="gray.300" 
+                  color="neutral.700" 
                   lineHeight="1.6"
                   fontSize={{ base: "md", md: "lg" }}
                   textAlign="center"
@@ -864,7 +896,7 @@ const Home = () => {
                 transition="all 0.5s ease"
                 mb={8}
               >
-                <Heading size={{ base: "lg", md: "xl" }} color="white" fontWeight="light">
+                <Heading size={{ base: "lg", md: "xl" }} color="neutral.800" fontWeight="light">
                   Secure Integration
                 </Heading>
               </Box>
@@ -874,25 +906,13 @@ const Home = () => {
       </Box>
 
       {/* Why Trust Us Section */}
-      <Box bg="gray.900" py={20}>
+      <Box bg="neutral.50" py={20} ref={trustSectionRef}>
         <Container maxW="full" px={8}>
-          {/* Section Header */}
-          <Box textAlign="center" mb={16}>
-            <Heading
-              as="h2"
-              size="3xl"
-              color="white"
-              fontWeight="light"
-              mb={4}
-            >
-              Why <Text as="span" color="purple.400">Trust</Text> Us?
-            </Heading>
-          </Box>
-
           {/* Three Trust Boxes */}
           <VStack spacing={12}>
-            {/* Box 1: Building Trust Through Excellence */}
+            {/* Header Panel */}
             <Box
+              ref={headerRef}
               bg="white"
               borderRadius="xl"
               border="1px solid"
@@ -903,6 +923,40 @@ const Home = () => {
               display="flex"
               alignItems="center"
               justifyContent="center"
+              opacity={headerVisible ? 1 : 0}
+              transform={headerVisible ? 'translateY(0)' : 'translateY(100px)'}
+              transition="all 0.8s ease"
+              position="relative"
+              zIndex={headerVisible ? 4 : 1}
+            >
+              <Heading
+                as="h2"
+                size="3xl"
+                color="neutral.800"
+                fontWeight="light"
+                textAlign="center"
+              >
+                Why <Text as="span" color="brand.600">Trust</Text> Us?
+              </Heading>
+            </Box>
+            {/* Box 1: Building Trust Through Excellence */}
+            <Box
+              ref={panel1Ref}
+              bg="white"
+              borderRadius="xl"
+              border="1px solid"
+              borderColor="gray.200"
+              p={12}
+              w="full"
+              minH="50vh"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              opacity={panel1Visible ? 1 : 0}
+              transform={panel1Visible ? 'translateY(0)' : 'translateY(100px)'}
+              transition="all 0.8s ease"
+              position="relative"
+              zIndex={panel1Visible ? 3 : 1}
             >
               <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12} alignItems="center">
                 {/* Left Side - Content */}
@@ -979,6 +1033,7 @@ const Home = () => {
 
             {/* Box 2: Security You Can Rely On */}
             <Box
+              ref={panel2Ref}
               bg="white"
               borderRadius="xl"
               border="1px solid"
@@ -989,6 +1044,11 @@ const Home = () => {
               display="flex"
               alignItems="center"
               justifyContent="center"
+              opacity={panel2Visible ? 1 : 0}
+              transform={panel2Visible ? 'translateY(0)' : 'translateY(100px)'}
+              transition="all 0.8s ease"
+              position="relative"
+              zIndex={panel2Visible ? 2 : 1}
             >
               <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12} alignItems="center">
                 {/* Left Side - Content */}
@@ -1065,6 +1125,7 @@ const Home = () => {
 
             {/* Box 3: Privacy by Design */}
             <Box
+              ref={panel3Ref}
               bg="white"
               borderRadius="xl"
               border="1px solid"
@@ -1075,6 +1136,11 @@ const Home = () => {
               display="flex"
               alignItems="center"
               justifyContent="center"
+              opacity={panel3Visible ? 1 : 0}
+              transform={panel3Visible ? 'translateY(0)' : 'translateY(100px)'}
+              transition="all 0.8s ease"
+              position="relative"
+              zIndex={panel3Visible ? 1 : 1}
             >
               <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12} alignItems="center">
                 {/* Left Side - Content */}
@@ -1168,7 +1234,7 @@ const Home = () => {
               <Text as="span" display="block">Transform Your</Text>
               <Text as="span" color="purple.400" display="block">Hospital?</Text>
             </Heading>
-            <Text fontSize="xl" color="gray.300" maxW="500px" lineHeight="1.6">
+            <Text fontSize="xl" color="gray.600" maxW="500px" lineHeight="1.6">
               Contact us and request a free demo today!
             </Text>
           </VStack>
@@ -1176,7 +1242,7 @@ const Home = () => {
       </Box>
 
       {/* Contact Form Section */}
-      <Box bg="gray.900" py={20} id="contact-section">
+      <Box bg="white" py={20} id="contact-section">
         <Container maxW="container.xl">
           <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={12} alignItems="center">
             {/* Left Side - Decorative Circles */}
@@ -1187,76 +1253,121 @@ const Home = () => {
                   position="absolute"
                   top="50%"
                   left="50%"
-                  transform={`translate(-50%, -50%) translateY(${Math.sin(scrollY * 0.002) * 20}px) rotate(${Math.sin(scrollY * 0.001) * 5}deg)`}
                   w="200px"
                   h="200px"
                   borderRadius="full"
                   border="2px solid"
                   borderColor="purple.400"
                   opacity={0.3}
-                  transition="transform 0.3s ease-out"
+                  animation="float1 8s ease-in-out infinite"
+                  sx={{
+                    '@keyframes float1': {
+                      '0%, 100%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(0deg)',
+                      },
+                      '25%': {
+                        transform: 'translate(-50%, -50%) translateY(-30px) rotate(90deg)',
+                      },
+                      '50%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(180deg)',
+                      },
+                      '75%': {
+                        transform: 'translate(-50%, -50%) translateY(30px) rotate(270deg)',
+                      },
+                    },
+                  }}
                 />
                 {/* Medium Blue Circle */}
                 <Box
                   position="absolute"
                   top="40%"
                   left="40%"
-                  transform={`translate(-50%, -50%) translateY(${Math.sin(scrollY * 0.003) * 15}px) rotate(${Math.sin(scrollY * 0.002) * 3}deg)`}
                   w="150px"
                   h="150px"
                   borderRadius="full"
                   border="2px solid"
                   borderColor="blue.400"
                   opacity={0.4}
-                  transition="transform 0.3s ease-out"
+                  animation="float2 6s ease-in-out infinite"
+                  sx={{
+                    '@keyframes float2': {
+                      '0%, 100%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(0deg)',
+                      },
+                      '33%': {
+                        transform: 'translate(-50%, -50%) translateY(-25px) rotate(120deg)',
+                      },
+                      '66%': {
+                        transform: 'translate(-50%, -50%) translateY(25px) rotate(240deg)',
+                      },
+                    },
+                  }}
                 />
                 {/* Small Cyan Circle */}
                 <Box
                   position="absolute"
                   top="60%"
                   left="60%"
-                  transform={`translate(-50%, -50%) translateY(${Math.sin(scrollY * 0.004) * 25}px) rotate(${Math.sin(scrollY * 0.003) * 7}deg)`}
                   w="100px"
                   h="100px"
                   borderRadius="full"
                   border="2px solid"
                   borderColor="cyan.400"
                   opacity={0.5}
-                  transition="transform 0.3s ease-out"
+                  animation="float3 10s ease-in-out infinite"
+                  sx={{
+                    '@keyframes float3': {
+                      '0%, 100%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(0deg)',
+                      },
+                      '20%': {
+                        transform: 'translate(-50%, -50%) translateY(-20px) rotate(72deg)',
+                      },
+                      '40%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(144deg)',
+                      },
+                      '60%': {
+                        transform: 'translate(-50%, -50%) translateY(20px) rotate(216deg)',
+                      },
+                      '80%': {
+                        transform: 'translate(-50%, -50%) translateY(0px) rotate(288deg)',
+                      },
+                    },
+                  }}
                 />
               </Box>
             </Box>
 
             {/* Right Side - Contact Form */}
-            <Box bg="gray.800" p={8} borderRadius="xl" border="1px solid" borderColor="gray.700">
+            <Box bg="brand.50" p={8} borderRadius="xl" border="1px solid" borderColor="brand.200">
               <VStack spacing={6} align="stretch">
-                <Heading size="lg" color="white" mb={4}>
+                <Heading size="lg" color="neutral.800" mb={4}>
                   Get in Touch
                 </Heading>
                 
                 {/* First Row - First Name and Last Name */}
                 <SimpleGrid columns={2} spacing={4}>
                   <FormControl isInvalid={!!errors.firstName}>
-                    <FormLabel color="white" fontSize="sm" mb={1}>
+                    <FormLabel color="neutral.700" fontSize="sm" mb={1}>
                       First name *
                     </FormLabel>
                     <Box
                       borderBottom="2px solid"
-                      borderColor={errors.firstName ? "red.400" : "purple.400"}
+                      borderColor={errors.firstName ? "alert.500" : "brand.500"}
                       pb={2}
                     >
                       <Input
                         variant="unstyled"
                         placeholder="Enter your first name"
-                        color="white"
-                        _placeholder={{ color: 'gray.400' }}
+                        color="neutral.800"
+                        _placeholder={{ color: 'neutral.500' }}
                         fontSize="md"
                         value={formData.firstName}
                         onChange={(e) => handleInputChange('firstName', e.target.value)}
                         onBlur={() => handleBlur('firstName')}
                       />
                       {errors.firstName && (
-                        <Text color="red.300" fontSize="sm" mt={1}>
+                        <Text color="alert.500" fontSize="sm" mt={1}>
                           {errors.firstName}
                         </Text>
                       )}
@@ -1264,26 +1375,26 @@ const Home = () => {
                   </FormControl>
                   
                   <FormControl isInvalid={!!errors.lastName}>
-                    <FormLabel color="white" fontSize="sm" mb={1}>
+                    <FormLabel color="gray.700" fontSize="sm" mb={1}>
                       Last name *
                     </FormLabel>
                     <Box
                       borderBottom="2px solid"
-                      borderColor={errors.lastName ? "red.400" : "purple.400"}
+                      borderColor={errors.lastName ? "red.400" : "lightPurple.500"}
                       pb={2}
                     >
                       <Input
                         variant="unstyled"
                         placeholder="Enter your last name"
-                        color="white"
-                        _placeholder={{ color: 'gray.400' }}
+                        color="gray.800"
+                        _placeholder={{ color: 'gray.500' }}
                         fontSize="md"
                         value={formData.lastName}
                         onChange={(e) => handleInputChange('lastName', e.target.value)}
                         onBlur={() => handleBlur('lastName')}
                       />
                       {errors.lastName && (
-                        <Text color="red.300" fontSize="sm" mt={1}>
+                        <Text color="red.500" fontSize="sm" mt={1}>
                           {errors.lastName}
                         </Text>
                       )}
@@ -1294,27 +1405,27 @@ const Home = () => {
                 {/* Second Row - Email and Phone */}
                 <SimpleGrid columns={2} spacing={4}>
                   <FormControl isInvalid={!!errors.email}>
-                    <FormLabel color="white" fontSize="sm" mb={1}>
+                    <FormLabel color="gray.700" fontSize="sm" mb={1}>
                       Email *
                     </FormLabel>
                     <Box
                       borderBottom="2px solid"
-                      borderColor={errors.email ? "red.400" : "purple.400"}
+                      borderColor={errors.email ? "red.400" : "lightPurple.500"}
                       pb={2}
                     >
                       <Input
                         variant="unstyled"
                         type="email"
                         placeholder="Enter your email"
-                        color="white"
-                        _placeholder={{ color: 'gray.400' }}
+                        color="gray.800"
+                        _placeholder={{ color: 'gray.500' }}
                         fontSize="md"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         onBlur={() => handleBlur('email')}
                       />
                       {errors.email && (
-                        <Text color="red.300" fontSize="sm" mt={1}>
+                        <Text color="red.500" fontSize="sm" mt={1}>
                           {errors.email}
                         </Text>
                       )}
@@ -1322,11 +1433,11 @@ const Home = () => {
                   </FormControl>
                   
                   <FormControl isInvalid={!!errors.phone}>
-                    <FormLabel color="white" fontSize="sm" mb={1}>
+                    <FormLabel color="gray.700" fontSize="sm" mb={1}>
                       Phone
                     </FormLabel>
                     <HStack spacing={2}>
-                      <HStack spacing={1} color="gray.400" fontSize="sm" minW="80px">
+                      <HStack spacing={1} color="gray.500" fontSize="sm" minW="80px">
                         <Text fontSize="lg">
                           <span role="img" aria-label="Indian flag">🇮🇳</span>
                         </Text>
@@ -1334,22 +1445,22 @@ const Home = () => {
                       </HStack>
                       <Box
                         borderBottom="2px solid"
-                        borderColor={errors.phone ? "red.400" : "purple.400"}
+                        borderColor={errors.phone ? "red.400" : "lightPurple.500"}
                         pb={2}
                         flex={1}
                       >
                         <Input
                           variant="unstyled"
                           placeholder="Enter your phone number"
-                          color="white"
-                          _placeholder={{ color: 'gray.400' }}
+                          color="gray.800"
+                          _placeholder={{ color: 'gray.500' }}
                           fontSize="md"
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
                           onBlur={() => handleBlur('phone')}
                         />
                         {errors.phone && (
-                          <Text color="red.300" fontSize="sm" mt={1}>
+                          <Text color="red.500" fontSize="sm" mt={1}>
                             {errors.phone}
                           </Text>
                         )}
@@ -1360,26 +1471,26 @@ const Home = () => {
 
                 {/* Third Row - Hospital Name */}
                 <FormControl isInvalid={!!errors.hospitalName}>
-                  <FormLabel color="white" fontSize="sm" mb={1}>
+                  <FormLabel color="gray.700" fontSize="sm" mb={1}>
                     Hospital name *
                   </FormLabel>
                   <Box
                     borderBottom="2px solid"
-                    borderColor={errors.hospitalName ? "red.400" : "purple.400"}
+                    borderColor={errors.hospitalName ? "red.400" : "lightPurple.500"}
                     pb={2}
                   >
                     <Input
                       variant="unstyled"
                       placeholder="Enter your hospital name"
-                      color="white"
-                      _placeholder={{ color: 'gray.400' }}
+                      color="gray.800"
+                      _placeholder={{ color: 'gray.500' }}
                       fontSize="md"
                       value={formData.hospitalName}
                       onChange={(e) => handleInputChange('hospitalName', e.target.value)}
                       onBlur={() => handleBlur('hospitalName')}
                     />
                     {errors.hospitalName && (
-                      <Text color="red.300" fontSize="sm" mt={1}>
+                      <Text color="red.500" fontSize="sm" mt={1}>
                         {errors.hospitalName}
                       </Text>
                     )}
@@ -1388,19 +1499,19 @@ const Home = () => {
 
                 {/* Message Field */}
                 <FormControl>
-                  <FormLabel color="white" fontSize="sm" mb={1}>
+                  <FormLabel color="gray.700" fontSize="sm" mb={1}>
                     Message
                   </FormLabel>
                   <Box
                     borderBottom="2px solid"
-                    borderColor="purple.400"
+                    borderColor="lightPurple.500"
                     pb={2}
                   >
                     <Textarea
                       variant="unstyled"
                       placeholder="Enter your message"
-                      color="white"
-                      _placeholder={{ color: 'gray.400' }}
+                      color="gray.800"
+                      _placeholder={{ color: 'gray.500' }}
                       fontSize="md"
                       rows={4}
                       resize="none"
@@ -1413,8 +1524,8 @@ const Home = () => {
                 {/* Submit Button */}
                 <Button
                   variant="outline"
-                  color="white"
-                  borderColor="white"
+                  color="neutral.700"
+                  borderColor="brand.500"
                   borderRadius="md"
                   py={3}
                   px={8}
@@ -1423,8 +1534,8 @@ const Home = () => {
                   textTransform="uppercase"
                   letterSpacing="wide"
                   _hover={{
-                    bg: 'white',
-                    color: 'gray.900'
+                    bg: 'brand.500',
+                    color: 'white'
                   }}
                   transition="all 0.2s"
                   onClick={handleSubmit}
@@ -1438,7 +1549,7 @@ const Home = () => {
       </Box>
 
       {/* Footer Section */}
-      <Box bg="gray.900" borderTop="1px solid" borderColor="gray.700" minH="70vh" display="flex" flexDirection="column">
+      <Box bg="neutral.900" borderTop="1px solid" borderColor="neutral.700" minH="70vh" display="flex" flexDirection="column">
         <Container maxW="container.xl" py={12} flex={1} display="flex" flexDirection="column" justifyContent="space-between">
           {/* Main Content - Spread Out */}
           <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" py={8}>
@@ -1448,7 +1559,7 @@ const Home = () => {
                 <Box
                   w={16}
                   h={16}
-                  bg="purple.400"
+                  bg="brand.500"
                   borderRadius="xl"
                   display="flex"
                   alignItems="center"
@@ -1463,12 +1574,12 @@ const Home = () => {
                   <Text fontSize="2xl" fontWeight="bold" color="white">
                     HOSPITAL.FINANCE
                   </Text>
-                  <Text color="purple.400" fontSize="sm" fontWeight="medium">
-                    AI-Powered Hospital Financing Platform
+                  <Text color="brand.400" fontSize="sm" fontWeight="medium">
+                    AI-Powered Healthcare Financing Platform
                   </Text>
                 </VStack>
               </HStack>
-              <Text color="gray.400" fontSize="lg" lineHeight="1.7" maxW="400px">
+              <Text color="neutral.400" fontSize="lg" lineHeight="1.7" maxW="400px">
                 Reach out to us to explore how Hospital.Finance can transform your hospital's financial future with AI-driven solutions.
               </Text>
             </VStack>
@@ -1481,44 +1592,44 @@ const Home = () => {
                   Contact
                 </Text>
                 <VStack align={{ base: "center", md: "start" }} spacing={4} w="full">
-                  <Text color="gray.400" fontSize="md">
+                  <Text color="neutral.400" fontSize="md">
                     Get in touch with our team
                   </Text>
                   <HStack spacing={4}>
                     <Box
                       w={12}
                       h={12}
-                      bg="white"
+                      bg="brand.500"
                       borderRadius="full"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                       cursor="pointer"
-                      _hover={{ bg: 'gray.200', transform: 'scale(1.1)' }}
+                      _hover={{ bg: 'brand.600', transform: 'scale(1.1)' }}
                       transition="all 0.2s"
                     >
-                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                      <Text fontSize="sm" fontWeight="bold" color="white">
                         in
                       </Text>
                     </Box>
                     <Box
                       w={12}
                       h={12}
-                      bg="white"
+                      bg="healthcare.500"
                       borderRadius="full"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                       cursor="pointer"
-                      _hover={{ bg: 'gray.200', transform: 'scale(1.1)' }}
+                      _hover={{ bg: 'healthcare.600', transform: 'scale(1.1)' }}
                       transition="all 0.2s"
                     >
-                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                      <Text fontSize="sm" fontWeight="bold" color="white">
                         <span role="img" aria-label="Camera">📷</span>
                       </Text>
                     </Box>
                   </HStack>
-                  <Text color="gray.400" fontSize="md" fontWeight="medium">
+                  <Text color="neutral.400" fontSize="md" fontWeight="medium">
                     https://www.hospital.finance
                   </Text>
                 </VStack>
@@ -1530,10 +1641,10 @@ const Home = () => {
                   Services
                 </Text>
                 <VStack align="center" spacing={4} w="full">
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Instant Loan Approval
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
                     AI Analytics Platform
                   </Text>
                 </VStack>
@@ -1545,16 +1656,16 @@ const Home = () => {
                   Menu
                 </Text>
                 <VStack align={{ base: "center", md: "end" }} spacing={4} w="full">
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Company
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Support
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Privacy Policy
                   </Text>
-                  <Text color="gray.400" fontSize="md" cursor="pointer" _hover={{ color: 'white' }} transition="color 0.2s">
+                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
                     Terms of Service
                   </Text>
                 </VStack>
@@ -1563,22 +1674,22 @@ const Home = () => {
 
             {/* Bottom Section - Additional Info */}
             <VStack align={{ base: "center", md: "start" }} spacing={4} mb={8} textAlign={{ base: "center", md: "left" }}>
-              <Text color="gray.500" fontSize="md">
-                24-hour loan approval • 98% success rate • AI-powered risk assessment
+              <Text color="neutral.500" fontSize="md">
+                24-hour loan approval • 0% success rate • AI-powered risk assessment
               </Text>
             </VStack>
           </Box>
 
           {/* Copyright Section */}
-          <Box borderTop="1px solid" borderColor="gray.700" pt={6} textAlign={{ base: "center", md: "left" }}>
-            <Text color="gray.400" fontSize="sm">
+          <Box borderTop="1px solid" borderColor="neutral.700" pt={6} textAlign={{ base: "center", md: "left" }}>
+            <Text color="neutral.400" fontSize="sm">
               © 2025 by Hospital.Finance. All Rights reserved.
             </Text>
           </Box>
         </Container>
         
-        {/* Blue Bar at Bottom */}
-        <Box bg="blue.600" h="4px" w="full" />
+        {/* Brand Bar at Bottom */}
+        <Box bg="brand.500" h="4px" w="full" />
       </Box>
     </Box>
   );

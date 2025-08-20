@@ -1,9 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --bg-color-primary: #171922;
-  --bg-color-secondary: #1e2028;
+  /* Professional Healthcare-Finance Color Palette */
+  --bg-color-primary: #f8fafc;      /* neutral.50 - Clean white background */
+  --bg-color-secondary: #f1f5f9;    /* neutral.100 - Subtle gray background */
+  --bg-color-tertiary: #e2e8f0;     /* neutral.200 - Light gray for cards */
+  --text-color-primary: #1e293b;    /* neutral.800 - Dark text for readability */
+  --text-color-secondary: #475569;  /* neutral.600 - Secondary text */
+  --brand-color-primary: #3b82f6;   /* brand.500 - Primary blue for trust */
+  --healthcare-color: #14b8a6;      /* healthcare.500 - Teal for healing */
+  --finance-color: #22c55e;         /* finance.500 - Green for wealth */
+  --accent-color: #f97316;          /* accent.500 - Orange for CTAs */
+  --alert-color: #ef4444;           /* alert.500 - Red for alerts */
 
-  color-scheme: light dark;
-
+  color-scheme: light;
 }
 
