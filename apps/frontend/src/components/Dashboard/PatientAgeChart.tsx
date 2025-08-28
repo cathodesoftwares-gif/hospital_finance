@@ -5,7 +5,6 @@ import {
   HStack,
   Text,
   Select,
-  useColorModeValue,
   Grid,
   GridItem,
 } from '@chakra-ui/react';
