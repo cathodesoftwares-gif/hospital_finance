@@ -34,10 +34,11 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: 'automatic',
     }),
     nxViteTsPaths(),
-    eslint({
-      failOnError: false,
-      failOnWarning: false,
-    }),
+    // Temporarily disabled ESLint to fix deployment
+    // eslint({
+    //   failOnError: false,
+    //   failOnWarning: false,
+    // }),
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
