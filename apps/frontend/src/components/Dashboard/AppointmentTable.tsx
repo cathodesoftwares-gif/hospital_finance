@@ -15,11 +15,13 @@ import {
   Icon,
   Flex,
   Button,
+  Link,
 } from '@chakra-ui/react';
 import {
   FaChevronLeft,
   FaChevronRight,
-  FaFilter,
+  FaSort,
+  FaEllipsisH,
 } from 'react-icons/fa';
 
 interface AppointmentTableProps {
@@ -55,7 +57,7 @@ const AppointmentTable: React.FC<AppointmentTableProps> = ({ selectedDate }) => 
       status: 'Confirmed',
     },
     {
-      name: 'Edgar Warnow',
+      name: 'Edgar Warrow',
       date: '20-07-28',
       time: '10:30 AM',
       doctor: 'Dr. Olivia Martinez',
@@ -91,13 +93,13 @@ const AppointmentTable: React.FC<AppointmentTableProps> = ({ selectedDate }) => 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Confirmed':
-        return 'green';
+        return { bg: 'blue.100', color: 'blue.700' };
       case 'Pending':
-        return 'orange';
+        return { bg: 'red.100', color: 'red.700' };
       case 'Cancelled':
-        return 'red';
+        return { bg: 'gray.100', color: 'gray.700' };
       default:
-        return 'gray';
+        return { bg: 'gray.100', color: 'gray.700' };
     }
   };
 
@@ -116,46 +118,57 @@ const AppointmentTable: React.FC<AppointmentTableProps> = ({ selectedDate }) => 
       boxShadow="sm"
     >
       <VStack align="start" spacing={6}>
+        {/* Header */}
+        <Flex align="center" justify="space-between" w="full">
+          <Text fontSize="xl" fontWeight="bold" color="gray.800">
+            Patient Appointment
+          </Text>
+          <Link color="blue.600" fontSize="sm" fontWeight="medium" _hover={{ textDecoration: 'underline' }}>
+            View All
+          </Link>
+        </Flex>
+
         {/* Date Navigation */}
         <Box w="full">
           <Flex align="center" justify="space-between" mb={4}>
-            <Text fontSize="lg" fontWeight="bold" color="gray.800">
-              Patient Appointment Table
-            </Text>
-            <HStack spacing={2}>
-              <IconButton
-                aria-label="Previous dates"
-                icon={<FaChevronLeft />}
-                size="sm"
-                variant="outline"
-                onClick={() => setCurrentDateIndex(Math.max(0, currentDateIndex - 1))}
-                isDisabled={currentDateIndex === 0}
-              />
-              <IconButton
-                aria-label="Next dates"
-                icon={<FaChevronRight />}
-                size="sm"
-                variant="outline"
-                onClick={() => setCurrentDateIndex(Math.min(dates.length - 7, currentDateIndex + 1))}
-                isDisabled={currentDateIndex >= dates.length - 7}
-              />
-            </HStack>
-          </Flex>
+            <IconButton
+              aria-label="Previous dates"
+              icon={<FaChevronLeft />}
+              size="sm"
+              variant="ghost"
+              onClick={() => setCurrentDateIndex(Math.max(0, currentDateIndex - 1))}
+              isDisabled={currentDateIndex === 0}
+            />
+            
+            {/* Date Pills */}
+            <Flex gap={2} overflowX="auto" pb={2} flex="1" justify="center">
+              {dates.slice(currentDateIndex, currentDateIndex + 14).map((date, index) => (
+                <Button
+                  key={index}
+                  size="sm"
+                  variant={index === 8 ? 'solid' : 'ghost'}
+                  colorScheme={index === 8 ? 'blue' : 'gray'}
+                  minW="60px"
+                  fontSize="xs"
+                  bg={index === 8 ? 'blue.600' : 'transparent'}
+                  color={index === 8 ? 'white' : 'gray.700'}
+                  _hover={{
+                    bg: index === 8 ? 'blue.700' : 'gray.100'
+                  }}
+                >
+                  {formatDate(date)}
+                </Button>
+              ))}
+            </Flex>
 
-          {/* Date Pills */}
-          <Flex gap={2} overflowX="auto" pb={2}>
-            {dates.slice(currentDateIndex, currentDateIndex + 7).map((date, index) => (
-              <Button
-                key={index}
-                size="sm"
-                variant={index === 8 ? 'solid' : 'outline'}
-                colorScheme={index === 8 ? 'blue' : 'gray'}
-                minW="60px"
-                fontSize="xs"
-              >
-                {formatDate(date)}
-              </Button>
-            ))}
+            <IconButton
+              aria-label="Next dates"
+              icon={<FaChevronRight />}
+              size="sm"
+              variant="ghost"
+              onClick={() => setCurrentDateIndex(Math.min(dates.length - 14, currentDateIndex + 1))}
+              isDisabled={currentDateIndex >= dates.length - 14}
+            />
           </Flex>
         </Box>
 
@@ -167,82 +180,96 @@ const AppointmentTable: React.FC<AppointmentTableProps> = ({ selectedDate }) => 
                 <Th>
                   <HStack spacing={1}>
                     <Text>Name</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
                 <Th>
                   <HStack spacing={1}>
                     <Text>Date</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
                 <Th>
                   <HStack spacing={1}>
                     <Text>Time</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
                 <Th>
                   <HStack spacing={1}>
                     <Text>Doctor</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
                 <Th>
                   <HStack spacing={1}>
                     <Text>Treatment</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
                 <Th>
                   <HStack spacing={1}>
                     <Text>Status</Text>
-                    <Icon as={FaFilter} w={3} h={3} color="gray.400" />
+                    <Icon as={FaSort} w={3} h={3} color="gray.400" />
                   </HStack>
                 </Th>
+                <Th></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {appointments.map((appointment, index) => (
-                <Tr key={index}>
-                  <Td>
-                    <Text fontSize="sm" fontWeight="medium" color="gray.800">
-                      {appointment.name}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text fontSize="sm" color="gray.600">
-                      {appointment.date}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text fontSize="sm" color="gray.600">
-                      {appointment.time}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text fontSize="sm" color="gray.600">
-                      {appointment.doctor}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text fontSize="sm" color="gray.600">
-                      {appointment.treatment}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Badge
-                      colorScheme={getStatusColor(appointment.status)}
-                      variant="subtle"
-                      fontSize="xs"
-                      px={2}
-                      py={1}
-                    >
-                      {appointment.status}
-                    </Badge>
-                  </Td>
-                </Tr>
-              ))}
+              {appointments.map((appointment, index) => {
+                const statusColors = getStatusColor(appointment.status);
+                return (
+                  <Tr key={index}>
+                    <Td>
+                      <Text fontSize="sm" fontWeight="medium" color="gray.800">
+                        {appointment.name}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <Text fontSize="sm" color="gray.600">
+                        {appointment.date}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <Text fontSize="sm" color="gray.600">
+                        {appointment.time}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <Text fontSize="sm" color="gray.600">
+                        {appointment.doctor}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <Text fontSize="sm" color="gray.600">
+                        {appointment.treatment}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <Badge
+                        bg={statusColors.bg}
+                        color={statusColors.color}
+                        fontSize="xs"
+                        px={2}
+                        py={1}
+                        borderRadius="full"
+                      >
+                        {appointment.status}
+                      </Badge>
+                    </Td>
+                    <Td>
+                      <IconButton
+                        aria-label="More options"
+                        icon={<FaEllipsisH />}
+                        size="sm"
+                        variant="ghost"
+                        color="gray.400"
+                      />
+                    </Td>
+                  </Tr>
+                );
+              })}
             </Tbody>
           </Table>
         </Box>

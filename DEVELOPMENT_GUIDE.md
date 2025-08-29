@@ -33,7 +33,7 @@ npm run start:dev:fullstack
 | Method | Speed | Context | Features | Best For |
 |--------|-------|---------|----------|----------|
 | **Vite Dev Server** | ⚡⚡⚡ | Full App | HMR, DevTools, API | **Primary Development** |
-| **Storybook** | ⚡⚡ | Component | Isolated, Docs | Component Library |
+
 | **Browser DevTools** | ⚡ | Runtime | Debug, Network | Debugging |
 
 ---
@@ -54,8 +54,7 @@ npm run frontend:dev
 
 ### **3. Component Development**
 ```bash
-# Storybook for isolated component testing
-npm run frontend:storybook
+
 ```
 
 ---
@@ -138,11 +137,7 @@ The Vite config is optimized for:
 - **Real user flows** - Complete app testing
 - **Performance testing** - Real app performance
 
-### **2. Use Storybook for:**
-- **Component isolation** - Individual component testing
-- **Design system** - Component library
-- **Documentation** - Component docs
-- **Visual testing** - UI consistency
+
 
 ### **3. Development Tips:**
 - **Keep both servers running** - Full-stack development
@@ -183,12 +178,7 @@ npm run build:frontend
 4. **Debug issues** - Use DevTools
 5. **Commit changes** - When features work
 
-### **Component Development:**
-1. **Start Storybook**: `npm run frontend:storybook`
-2. **Isolate components** - Test in isolation
-3. **Document components** - Add stories
-4. **Test variations** - Different states
-5. **Integrate back** - Use in main app
+
 
 ---
 

@@ -30,9 +30,9 @@ import {
   FaFingerprint
 } from 'react-icons/fa';
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [panel1Visible, setPanel1Visible] = useState(false);
   const [panel2Visible, setPanel2Visible] = useState(false);
@@ -63,8 +63,6 @@ const Home = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
       // Check if trust section is in view
       if (trustSectionRef.current) {
         const rect = trustSectionRef.current.getBoundingClientRect();
@@ -888,13 +886,14 @@ const Home = () => {
               {/* Spacer for bottom */}
               <Box flex={1}></Box>
               
-              {/* Heading slightly above bottom */}
+              {/* Heading centered horizontally */}
               <Box 
                 className="panel-content"
                 opacity={0.9}
                 transform="translateY(0)"
                 transition="all 0.5s ease"
                 mb={8}
+                textAlign="center"
               >
                 <Heading size={{ base: "lg", md: "xl" }} color="neutral.800" fontWeight="light">
                   Secure Integration
@@ -1641,12 +1640,16 @@ const Home = () => {
                   Services
                 </Text>
                 <VStack align="center" spacing={4} w="full">
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Instant Loan Approval
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
-                    AI Analytics Platform
-                  </Text>
+                  <Link to="/finance">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Instant Loan Approval
+                    </Text>
+                  </Link>
+                  <Link to="/analytics">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
+                      AI Analytics Platform
+                    </Text>
+                  </Link>
                 </VStack>
               </VStack>
 
@@ -1656,18 +1659,26 @@ const Home = () => {
                   Menu
                 </Text>
                 <VStack align={{ base: "center", md: "end" }} spacing={4} w="full">
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Company
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Support
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Privacy Policy
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Terms of Service
-                  </Text>
+                  <Link to="/company">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Company
+                    </Text>
+                  </Link>
+                  <Link to="/support">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Support
+                    </Text>
+                  </Link>
+                  <Link to="/privacy">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Privacy Policy
+                    </Text>
+                  </Link>
+                  <Link to="/terms">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Terms of Service
+                    </Text>
+                  </Link>
                 </VStack>
               </VStack>
             </Grid>

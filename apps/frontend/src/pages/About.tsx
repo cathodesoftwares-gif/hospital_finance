@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -11,7 +12,6 @@ import {
   Button,
   Icon,
   Grid,
-  Image,
   Avatar,
   AvatarGroup,
 } from '@chakra-ui/react';
@@ -31,10 +31,26 @@ import {
 } from 'react-icons/fa';
 
 const About = () => {
+  const navigate = useNavigate();
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleContactUs = () => {
+    navigate('/');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
 
   return (
     <Box>
@@ -99,6 +115,7 @@ const About = () => {
                   fontSize={{ base: "md", md: "lg" }}
                   rounded="full"
                   w={{ base: 'full', lg: 'auto' }}
+                  onClick={handleContactUs}
                 >
                   Contact Us
                 </Button>
@@ -673,6 +690,7 @@ const About = () => {
                 py={{ base: 4, md: 6 }}
                 fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
+                onClick={handleContactUs}
               >
                 Get Started
               </Button>
@@ -691,6 +709,7 @@ const About = () => {
                 py={{ base: 4, md: 6 }}
                 fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
+                onClick={handleContactUs}
               >
                 Contact Us
               </Button>
@@ -792,12 +811,16 @@ const About = () => {
                   Services
                 </Text>
                 <VStack align="center" spacing={4} w="full">
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Instant Loan Approval
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
-                    AI Analytics Platform
-                  </Text>
+                  <Link to="/finance">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Instant Loan Approval
+                    </Text>
+                  </Link>
+                  <Link to="/analytics">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
+                      AI Analytics Platform
+                    </Text>
+                  </Link>
                 </VStack>
               </VStack>
 
@@ -807,18 +830,26 @@ const About = () => {
                   Menu
                 </Text>
                 <VStack align={{ base: "center", md: "end" }} spacing={4} w="full">
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Company
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Support
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Privacy Policy
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Terms of Service
-                  </Text>
+                  <Link to="/company">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Company
+                    </Text>
+                  </Link>
+                  <Link to="/support">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Support
+                    </Text>
+                  </Link>
+                  <Link to="/privacy">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Privacy Policy
+                    </Text>
+                  </Link>
+                  <Link to="/terms">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Terms of Service
+                    </Text>
+                  </Link>
                 </VStack>
               </VStack>
             </Grid>

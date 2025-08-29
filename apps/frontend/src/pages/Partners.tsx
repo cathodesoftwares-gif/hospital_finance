@@ -20,12 +20,29 @@ import {
   FaUserTie
 } from 'react-icons/fa';
 import React, { useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const Partners = () => {
+  const navigate = useNavigate();
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleContactUs = () => {
+    navigate('/');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
 
   const lenderDetails = [
     {
@@ -102,7 +119,7 @@ const Partners = () => {
               to transform hospital financing across India.
             </Text>
             <VStack spacing={4} pt={6} w={{ base: 'full', md: 'auto' }}>
-              <Button 
+                            <Button
                 size={{ base: "md", md: "lg" }}
                 colorScheme="brand" 
                 bg="brand.500"
@@ -112,7 +129,7 @@ const Partners = () => {
                 py={{ base: 4, md: 6 }}
                 fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={handleContactUs}
                 w={{ base: 'full', md: 'auto' }}
               >
                 Become a Partner
@@ -132,7 +149,7 @@ const Partners = () => {
                 py={{ base: 4, md: 6 }}
                 fontSize={{ base: "md", md: "lg" }}
                 rounded="full"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={handleContactUs}
                 w={{ base: 'full', md: 'auto' }}
               >
                 View Partners
@@ -345,12 +362,16 @@ const Partners = () => {
                   Services
                 </Text>
                 <VStack align="center" spacing={4}>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Instant Loan Approval
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
-                    AI Analytics Platform
-                  </Text>
+                  <RouterLink to="/finance">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Instant Loan Approval
+                    </Text>
+                  </RouterLink>
+                  <RouterLink to="/analytics">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'healthcare.300' }} transition="color 0.2s">
+                      AI Analytics Platform
+                    </Text>
+                  </RouterLink>
                 </VStack>
               </VStack>
 
@@ -360,18 +381,26 @@ const Partners = () => {
                   Menu
                 </Text>
                 <VStack align={{ base: "center", md: "end" }} spacing={4}>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Company
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Support
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Privacy Policy
-                  </Text>
-                  <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
-                    Terms of Service
-                  </Text>
+                  <RouterLink to="/company">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Company
+                    </Text>
+                  </RouterLink>
+                  <RouterLink to="/support">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Support
+                    </Text>
+                  </RouterLink>
+                  <RouterLink to="/privacy">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Privacy Policy
+                    </Text>
+                  </RouterLink>
+                  <RouterLink to="/terms">
+                    <Text color="neutral.400" fontSize="md" cursor="pointer" _hover={{ color: 'brand.300' }} transition="color 0.2s">
+                      Terms of Service
+                    </Text>
+                  </RouterLink>
                 </VStack>
               </VStack>
             </Grid>

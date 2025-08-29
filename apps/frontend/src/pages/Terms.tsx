@@ -7,16 +7,9 @@ import {
   Text,
   VStack,
   HStack,
-  SimpleGrid,
   Badge,
-  Button,
-  Icon,
   Grid,
 } from '@chakra-ui/react';
-import { 
-  FaFileContract,
-  FaGavel,
-} from 'react-icons/fa';
 
 const Terms = () => {
   useEffect(() => {
@@ -25,50 +18,6 @@ const Terms = () => {
 
   return (
     <Box>
-      {/* Hero Section */}
-      <Box bg="neutral.50" minH="100vh" display="flex" alignItems="center">
-        <Container maxW="container.xl" py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
-          <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={{ base: 8, lg: 12 }} alignItems="center">
-            <VStack align={{ base: "center", lg: "start" }} spacing={{ base: 6, md: 8 }} textAlign={{ base: "center", lg: "left" }}>
-              <Badge colorScheme="brand" px={4} py={2} borderRadius="full" fontSize="sm" bg="brand.100" color="brand.700">
-                Terms & Conditions
-              </Badge>
-              <Heading as="h1" size={{ base: "2xl", md: "3xl", lg: "4xl" }} color="neutral.800" lineHeight="1.1" fontWeight="medium">
-                Terms of Service
-                <Text as="span" color="brand.600" display="block">Agreement</Text>
-              </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color="neutral.600" lineHeight="1.6">
-                Please read these terms and conditions carefully before using our services. 
-                By using Hospital.Finance, you agree to be bound by these terms.
-              </Text>
-              <VStack spacing={4} pt={6} w={{ base: 'full', lg: 'auto' }} align={{ base: "center", lg: "start" }}>
-                <Button size={{ base: "md", md: "lg" }} colorScheme="brand" bg="brand.500" _hover={{ bg: 'brand.600', transform: 'translateY(-2px)' }} transition="all 0.2s" px={{ base: 6, md: 8 }} py={{ base: 4, md: 6 }} fontSize={{ base: "md", md: "lg" }} rounded="full" w={{ base: 'full', lg: 'auto' }}>
-                  Contact Legal Team
-                </Button>
-              </VStack>
-            </VStack>
-
-            <Box bg="white" p={{ base: 6, md: 8 }} borderRadius="xl" border="1px solid" borderColor="gray.200" boxShadow="lg">
-              <VStack spacing={8}>
-                <Heading size="lg" color="neutral.800" textAlign="center">Terms Overview</Heading>
-                <SimpleGrid columns={2} spacing={6} w="full">
-                  <VStack spacing={2}>
-                    <Icon as={FaFileContract} w={8} h={8} color="brand.500" />
-                    <Text fontSize="2xl" fontWeight="bold" color="brand.600">2025</Text>
-                    <Text fontSize="sm" color="neutral.600" textAlign="center">Last Updated</Text>
-                  </VStack>
-                  <VStack spacing={2}>
-                    <Icon as={FaGavel} w={8} h={8} color="healthcare.500" />
-                    <Text fontSize="2xl" fontWeight="bold" color="healthcare.600">India</Text>
-                    <Text fontSize="sm" color="neutral.600" textAlign="center">Jurisdiction</Text>
-                  </VStack>
-                </SimpleGrid>
-              </VStack>
-            </Box>
-          </Grid>
-        </Container>
-      </Box>
-
       {/* Terms Content */}
       <Box bg="white" py={20}>
         <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
@@ -193,28 +142,94 @@ const Terms = () => {
         </Container>
       </Box>
 
-      {/* Footer */}
-      <Box bg="neutral.900" color="white" py={16}>
-        <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
-          <Box>
-            <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={8} mb={8}>
-              <VStack align={{ base: "center", md: "start" }} spacing={6} w="full">
-                <VStack align={{ base: "center", md: "start" }} spacing={4}>
-                  <HStack spacing={3}>
-                    <Box w={12} h={12} bg="brand.500" borderRadius="full" display="flex" alignItems="center" justifyContent="center">
-                      <Text fontSize="sm" fontWeight="bold" color="white">HF</Text>
+      {/* Footer Section */}
+      <Box bg="neutral.900" borderTop="1px solid" borderColor="neutral.700" minH="70vh" display="flex" flexDirection="column">
+        <Container maxW="container.xl" py={12} flex={1} display="flex" flexDirection="column" justifyContent="space-between">
+          {/* Main Content - Spread Out */}
+          <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" py={8}>
+            {/* Top Section - Logo and Brand */}
+            <VStack align={{ base: "center", md: "start" }} spacing={6} mb={12} textAlign={{ base: "center", md: "left" }}>
+              <HStack spacing={4}>
+                <Box
+                  w={16}
+                  h={16}
+                  bg="brand.500"
+                  borderRadius="xl"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  fontWeight="bold"
+                  color="white"
+                  fontSize="2xl"
+                >
+                  HF
+                </Box>
+                <VStack align={{ base: "center", md: "start" }} spacing={1}>
+                  <Text fontSize="2xl" fontWeight="bold" color="white">
+                    HOSPITAL.FINANCE
+                  </Text>
+                  <Text color="brand.400" fontSize="sm" fontWeight="medium">
+                    AI-Powered Healthcare Financing Platform
+                  </Text>
+                </VStack>
+              </HStack>
+              <Text color="neutral.400" fontSize="lg" lineHeight="1.7" maxW="400px">
+                Reach out to us to explore how Hospital.Finance can transform your hospital's financial future with AI-driven solutions.
+              </Text>
+            </VStack>
+
+            {/* Middle Section - Three Columns Spread Out */}
+            <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={12} mb={12} flex={1} w="full">
+              {/* Left Section - Contact */}
+              <VStack align={{ base: "center", md: "start" }} spacing={6} w="full" textAlign={{ base: "center", md: "left" }}>
+                <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
+                  Contact
+                </Text>
+                <VStack align={{ base: "center", md: "start" }} spacing={4} w="full">
+                  <Text color="neutral.400" fontSize="md">
+                    Get in touch with our team
+                  </Text>
+                  <HStack spacing={4}>
+                    <Box
+                      w={12}
+                      h={12}
+                      bg="brand.500"
+                      borderRadius="full"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      cursor="pointer"
+                      _hover={{ bg: 'brand.600', transform: 'scale(1.1)' }}
+                      transition="all 0.2s"
+                    >
+                      <Text fontSize="sm" fontWeight="bold" color="white">
+                        in
+                      </Text>
                     </Box>
-                    <VStack align="start" spacing={0}>
-                      <Text fontSize="xl" fontWeight="bold" color="white">Hospital.Finance</Text>
-                      <Text fontSize="sm" color="brand.400">Transforming Healthcare Finance</Text>
-                    </VStack>
+                    <Box
+                      w={12}
+                      h={12}
+                      bg="healthcare.500"
+                      borderRadius="full"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      cursor="pointer"
+                      _hover={{ bg: 'healthcare.600', transform: 'scale(1.1)' }}
+                      transition="all 0.2s"
+                    >
+                      <Text fontSize="sm" fontWeight="bold" color="white">
+                        <span role="img" aria-label="Camera">📷</span>
+                      </Text>
+                    </Box>
                   </HStack>
-                  <Text color="neutral.400" fontSize="md" textAlign={{ base: "center", md: "left" }}>
-                    Empowering hospitals with innovative financial solutions and AI-powered analytics.
+                  <Text color="neutral.400" fontSize="md" fontWeight="medium">
+                    https://www.hospital.finance
                   </Text>
                 </VStack>
               </VStack>
 
+              {/* Middle Section - Services */}
               <VStack align="center" spacing={6} w="full">
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Services
@@ -233,6 +248,7 @@ const Terms = () => {
                 </VStack>
               </VStack>
 
+              {/* Right Section - Menu */}
               <VStack align={{ base: "center", md: "end" }} spacing={6} w="full" textAlign={{ base: "center", md: "right" }}>
                 <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
                   Menu
@@ -262,6 +278,7 @@ const Terms = () => {
               </VStack>
             </Grid>
 
+            {/* Bottom Section - Additional Info */}
             <VStack align={{ base: "center", md: "start" }} spacing={4} mb={8} textAlign={{ base: "center", md: "left" }}>
               <Text color="neutral.500" fontSize="md">
                 24-hour loan approval • 0% success rate • AI-powered risk assessment
@@ -269,6 +286,7 @@ const Terms = () => {
             </VStack>
           </Box>
 
+          {/* Copyright Section */}
           <Box borderTop="1px solid" borderColor="neutral.700" pt={6} textAlign={{ base: "center", md: "left" }}>
             <Text color="neutral.400" fontSize="sm">
               © 2025 by Hospital.Finance. All Rights reserved.
@@ -276,6 +294,7 @@ const Terms = () => {
           </Box>
         </Container>
         
+        {/* Brand Bar at Bottom */}
         <Box bg="brand.500" h="4px" w="full" />
       </Box>
     </Box>

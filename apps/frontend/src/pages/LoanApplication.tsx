@@ -168,6 +168,36 @@ const LoanApplication = () => {
     [key: string]: string;
   }
 
+  // Map fields validated per step to compute active errors correctly
+  const stepFieldMap: Record<number, Array<keyof FormData>> = {
+    1: [
+      'hospitalName',
+      'registrationNumber',
+      'address',
+      'city',
+      'state',
+      'pincode',
+      'hospitalType',
+      'contactPerson',
+      'phone',
+      'email',
+    ],
+    2: [
+      'pan',
+      'gst',
+      'annualTurnover',
+      'annualProfit',
+    ],
+    3: [
+      'loanAmount',
+      'loanPurpose',
+      'loanTerm',
+      'collateralValue',
+    ],
+    4: ['documents'],
+    5: ['termsAccepted'],
+  };
+
   // Validation functions
   const validateStep = (step: number): boolean => {
     const newErrors: FormErrors = {};
@@ -228,9 +258,12 @@ const LoanApplication = () => {
 
   const handleInputChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+    // Clear active error for this field by removing the key (avoids lingering empty-string keys)
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
+      setErrors(prev => {
+        const { [field as string]: _removed, ...rest } = prev;
+        return rest;
+      });
     }
   };
 
@@ -903,7 +936,8 @@ const LoanApplication = () => {
                     rightIcon={<FaArrowRight />}
                     colorScheme="brand"
                     onClick={nextStep}
-                    isDisabled={Object.keys(errors).length > 0}
+                    // Disable Next only if there are errors for fields of the current step
+                    isDisabled={Object.keys(errors).some((k) => (stepFieldMap[currentStep] as string[]).includes(k))}
                   >
                     Next
                   </Button>
@@ -913,7 +947,8 @@ const LoanApplication = () => {
                     onClick={handleSubmit}
                     isLoading={isSubmitting}
                     loadingText="Submitting..."
-                    isDisabled={Object.keys(errors).length > 0}
+                    // Disable Submit only if any error exists in final step
+                    isDisabled={Object.keys(errors).some((k) => (stepFieldMap[5] as string[]).includes(k))}
                   >
                     Submit Application
                   </Button>

@@ -19,7 +19,7 @@ This template includes a bunch of libraries to get you up and running quickly an
 - [Zustand](https://github.com/pmndrs/zustand) - easy state-management
 - [React router](https://reactrouter.com/en/main) - for routing
 - [Cypress](https://www.cypress.io/) - end-to-end testing for your frontend
-- [Storybook](https://storybook.js.org/) - build your UI web components in isolation
+
 
 #### Frontend UI
 
@@ -55,7 +55,7 @@ This template includes a bunch of libraries to get you up and running quickly an
 
 ## Scripts
 
-- `npm run frontend:storybook` - start storybook to develop components in isolation
+
 - `npm run dep-graph` - see dependency graph
 - For more commands check `package.json`
 - To generate new apps in the monorepo, check out [NX documentation](https://nx.dev/packages/nx/documents/generate).
