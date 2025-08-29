@@ -10,8 +10,8 @@ const config: ThemeConfig = {
 const styles: Styles = {
   global: (props) => ({
     body: {
-      bg: 'gray.50',
-      color: 'gray.800',
+      bg: 'white',
+      color: 'gray.900',
     },
   }),
 };
@@ -103,6 +103,41 @@ const components = {
   Button: {
     defaultProps: {
       colorScheme: 'brand',
+    },
+  },
+  Card: {
+    baseStyle: {
+      container: {
+        bg: 'white',
+        border: '1px solid',
+        borderColor: 'gray.200',
+        borderRadius: 'lg',
+        boxShadow: 'sm',
+      },
+    },
+  },
+  CardBody: {
+    baseStyle: {
+      bg: 'white',
+    },
+  },
+  Table: {
+    baseStyle: {
+      thead: {
+        bg: 'white',
+      },
+      tbody: {
+        tr: {
+          _hover: {
+            bg: 'blue.50',
+          },
+        },
+      },
+    },
+  },
+  Text: {
+    baseStyle: {
+      color: 'gray.900',
     },
   },
 };

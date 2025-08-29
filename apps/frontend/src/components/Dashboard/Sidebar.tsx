@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Box,
   VStack,
@@ -33,6 +34,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const bgColor = 'white';
   const borderColor = 'gray.200';
   const textColor = 'gray.600';
@@ -40,16 +43,23 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const activeTextColor = 'blue.600';
 
   const menuItems = [
-    { icon: FaHospital, label: 'Dashboard', isActive: true },
-    { icon: FaCalendarAlt, label: 'Appointments' },
-    { icon: FaUsers, label: 'Patients' },
-    { icon: FaUserMd, label: 'Doctors' },
-    { icon: FaBuilding, label: 'Departments' },
-    { icon: FaClock, label: "Doctors' Schedule" },
-    { icon: FaCreditCard, label: 'Payments' },
-    { icon: FaBoxes, label: 'Inventory' },
-    { icon: FaEnvelope, label: 'Messages', badge: 7 },
+    { icon: FaHospital, label: 'Dashboard', path: '/dashboard', isActive: location.pathname === '/dashboard' },
+    { icon: FaCalendarAlt, label: 'Appointments', path: '/appointments', isActive: location.pathname === '/appointments' },
+    { icon: FaUsers, label: 'Patients', path: '/patients', isActive: location.pathname === '/patients' },
+    { icon: FaUserMd, label: 'Doctors', path: '/doctors', isActive: location.pathname === '/doctors' },
+    { icon: FaBuilding, label: 'Departments', path: '/departments', isActive: location.pathname === '/departments' },
+    { icon: FaClock, label: "Doctors' Schedule", path: '/doctors-schedule', isActive: location.pathname === '/doctors-schedule' },
+    { icon: FaCreditCard, label: 'Payments', path: '/payments', isActive: location.pathname === '/payments' },
+    { icon: FaBoxes, label: 'Inventory', path: '/inventory', isActive: location.pathname === '/inventory' },
+    { icon: FaEnvelope, label: 'Messages', path: '/messages', badge: 7, isActive: location.pathname === '/messages' },
   ];
+
+  const handleMenuClick = (path: string) => {
+    navigate(path);
+    if (isOpen) {
+      onToggle(); // Close mobile drawer
+    }
+  };
 
   const SidebarContent = () => (
     <VStack
@@ -92,6 +102,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             }}
             leftIcon={<Icon as={item.icon} w={5} h={5} />}
             position="relative"
+            onClick={() => handleMenuClick(item.path)}
           >
             <HStack w="full" justify="space-between">
               <Text fontWeight="medium">{item.label}</Text>

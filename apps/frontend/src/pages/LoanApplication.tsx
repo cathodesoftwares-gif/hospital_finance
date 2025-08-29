@@ -964,19 +964,51 @@ const LoanApplication = () => {
         <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
           <Box>
             <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={8} mb={8}>
-              <VStack align={{ base: "center", md: "start" }} spacing={6} w="full">
-                <VStack align={{ base: "center", md: "start" }} spacing={4}>
-                  <HStack spacing={3}>
-                    <Box w={12} h={12} bg="brand.500" borderRadius="full" display="flex" alignItems="center" justifyContent="center">
-                      <Text fontSize="sm" fontWeight="bold" color="white">HF</Text>
+              {/* Left Section - Contact */}
+              <VStack align={{ base: "center", md: "start" }} spacing={6} w="full" textAlign={{ base: "center", md: "left" }}>
+                <Text fontSize="xl" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wide">
+                  Contact
+                </Text>
+                <VStack align={{ base: "center", md: "start" }} spacing={4} w="full">
+                  <Text color="neutral.400" fontSize="md">
+                    Get in touch with our team
+                  </Text>
+                  <HStack spacing={4}>
+                    <Box
+                      w={12}
+                      h={12}
+                      bg="brand.500"
+                      borderRadius="full"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      cursor="pointer"
+                      _hover={{ bg: 'brand.600', transform: 'scale(1.1)' }}
+                      transition="all 0.2s"
+                    >
+                      <Text fontSize="sm" fontWeight="bold" color="white">
+                        in
+                      </Text>
                     </Box>
-                    <VStack align="start" spacing={0}>
-                      <Text fontSize="xl" fontWeight="bold" color="white">Hospital.Finance</Text>
-                      <Text fontSize="sm" color="brand.400">Transforming Healthcare Finance</Text>
-                    </VStack>
+                    <Box
+                      w={12}
+                      h={12}
+                      bg="healthcare.500"
+                      borderRadius="full"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      cursor="pointer"
+                      _hover={{ bg: 'healthcare.600', transform: 'scale(1.1)' }}
+                      transition="all 0.2s"
+                    >
+                      <Text fontSize="sm" fontWeight="bold" color="white">
+                        <span role="img" aria-label="Camera">📷</span>
+                      </Text>
+                    </Box>
                   </HStack>
-                  <Text color="neutral.400" fontSize="md" textAlign={{ base: "center", md: "left" }}>
-                    Empowering hospitals with innovative financial solutions and AI-powered analytics.
+                  <Text color="neutral.400" fontSize="md" fontWeight="medium">
+                    https://www.hospital.finance
                   </Text>
                 </VStack>
               </VStack>

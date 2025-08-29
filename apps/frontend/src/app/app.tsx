@@ -14,6 +14,16 @@ import Terms from '../pages/Terms';
 import LoanApplication from '../pages/LoanApplication';
 import DashboardLogin from '../pages/DashboardLogin';
 import Dashboard from '../pages/Dashboard';
+import Doctors from '../pages/Doctors';
+import DoctorDetails from '../pages/DoctorDetails';
+import DoctorsSchedule from '../pages/DoctorsSchedule';
+import Appointments from '../pages/Appointments';
+import Messages from '../pages/Messages';
+import Departments from '../pages/Departments';
+import DepartmentDetails from '../pages/DepartmentDetails';
+import Inventory from '../pages/Inventory';
+import Payments from '../pages/Payments';
+import Patients from '../pages/Patients';
 import NavigationBar from '../components/Navigation/NavigationBar';
 import ProtectedRoute from '../components/ProtectedRoute';
 
@@ -147,6 +157,56 @@ export function App() {
               <Dashboard />
             </ProtectedRoute>
           } />
+          <Route path="/doctors" element={
+            <ProtectedRoute>
+              <Doctors />
+            </ProtectedRoute>
+          } />
+          <Route path="/patients" element={
+            <ProtectedRoute>
+              <Patients />
+            </ProtectedRoute>
+          } />
+                  <Route path="/doctors/:doctorId" element={
+          <ProtectedRoute>
+            <DoctorDetails />
+          </ProtectedRoute>
+        } />
+        <Route path="/doctors-schedule" element={
+          <ProtectedRoute>
+            <DoctorsSchedule />
+          </ProtectedRoute>
+        } />
+        <Route path="/appointments" element={
+          <ProtectedRoute>
+            <Appointments />
+          </ProtectedRoute>
+        } />
+        <Route path="/messages" element={
+          <ProtectedRoute>
+            <Messages />
+          </ProtectedRoute>
+        } />
+        <Route path="/departments" element={
+          <ProtectedRoute>
+            <Departments />
+          </ProtectedRoute>
+        } />
+        <Route path="/departments/:departmentId" element={
+          <ProtectedRoute>
+            <DepartmentDetails />
+          </ProtectedRoute>
+        } />
+        <Route path="/inventory" element={
+          <ProtectedRoute>
+            <Inventory />
+          </ProtectedRoute>
+        } />
+        <Route path="/payments" element={
+          <ProtectedRoute>
+            <Payments />
+          </ProtectedRoute>
+        } />
           {/* Development route - remove in production */}
           <Route path="/dashboard-dev" element={<Dashboard />} />
           <Route path="*" element={
